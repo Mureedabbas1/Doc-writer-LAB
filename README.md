@@ -1,29 +1,57 @@
-# Easy PDF
+# PDF Engine
 
-A responsive, browser-based utility website inspired by the supplied Easy PDF reference.
+A responsive, browser-based PDF utility website published with GitHub Pages.
 
-## Tools included
+## Live website
 
-- **Merge PDF:** combine two or more PDFs and reorder files before merging.
-- **JPG to PDF:** convert JPG/JPEG and PNG images into a PDF.
-- **Word Counter:** count words, characters, characters without spaces, sentences, and estimated reading time.
-- **Age Calculator:** calculate years, months, days, total days lived, and time until the next birthday.
+https://mureedabbas1.github.io/Easy-PDF/
 
-## Run locally
+## Tools currently included
 
-Open `index.html` in a modern browser. The PDF tools load `pdf-lib` from a CDN, so an internet connection is needed for PDF processing. Word Counter and Age Calculator work in the browser.
+### PDF tools
+- Merge PDF
+- Split PDF
+- Rotate PDF
+- Remove PDF pages
+- Add page numbers
+- PDF to JPG
+- JPG to PDF
+- Compress PDF (rasterizes pages, so text may no longer be selectable)
+- Extract PDF pages
+- Reorder PDF pages
+- Add a text watermark
+- Crop PDF pages (visual crop only; not secure redaction)
+- Extract selectable text from PDF (scanned image-only pages need OCR)
 
-## Privacy
+### Text and calculators
+- Word Counter
+- Case Converter
+- Percentage Calculator
+- Age Calculator
 
-The PDF/image tools process selected files in the browser. No upload endpoint is used by these tools. If analytics, advertising, or other external services are added later, update the privacy policy before launch.
+## SEO files
 
-## Before launch
+- `sitemap.xml` lists the homepage and individual tool landing pages.
+- `robots.txt` allows crawling and points crawlers to the sitemap.
+- Tool landing pages have unique titles, descriptions, canonical URLs, and structured WebPage metadata.
 
-- Replace `hello@yourdomain.com` with a real contact email.
-- Review the privacy policy and advertising disclosures before enabling ads.
-- Enable GitHub Pages in repository Settings → Pages and select the `main` branch / root folder.
-- Test the tools with sample PDFs and images on desktop and mobile.
+## Privacy and limitations
+
+The available PDF workflows process selected files in the browser; this repository does not provide a PDF upload server. Third-party CDN scripts and Google Fonts are loaded when the site is used, so the privacy policy should be reviewed to accurately describe those external requests.
+
+PDF compression converts pages to images and can reduce text searchability. Cropping changes the visible page area but does not securely erase hidden content. The watermark is a visible text label, not a security control. PDF-to-text extracts existing text and does not perform OCR.
+
+## Contact
+
+Report issues or request features at:
+https://github.com/Mureedabbas1/Easy-PDF/issues
+
+Do not post private documents, passwords, or sensitive personal information in public issues.
+
+## Deployment
+
+GitHub Pages uses the `main` branch root. After commits, allow the Pages deployment workflow to finish before checking the live site.
 
 ## License
 
-Add a license before accepting external contributions or reusing the code elsewhere.
+No license is currently specified. Add a license before inviting reuse or external contributions.
