@@ -422,7 +422,8 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     var url = URL.createObjectURL(blob);
     var a = mk('a', 'btn dl'); a.href = url; a.download = name; a.textContent = 'Download ' + name + ' (' + fmt(blob.size) + ')';
     host.innerHTML = ''; host.appendChild(a);
-    try { a.click(); } catch (e) {}
+    if (window.__PDF_ENGINE_SELFTEST_ACTIVE) { window.__PDF_ENGINE_SELFTEST_OUTPUT = { blob: blob, name: name }; }
+    else { try { a.click(); } catch (e) {} }
   }
   function isPdf(f) { return /pdf$/i.test(f.type) || /\.pdf$/i.test(f.name); }
   function blobPdf(bytes) { return new Blob([bytes], { type: 'application/pdf' }); }
@@ -626,6 +627,13 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
           var left = Math.round((nb - d2) / 86400000); nx.textContent = 'Next birthday in ' + left + ' day' + (left === 1 ? '' : 's') + ' (turning ' + (nb.getFullYear() - d1.getFullYear()) + ').'; }
         $('age-dob').addEventListener('input', age); $('age-on').addEventListener('input', age); age(); } }
 ,
+    { id: 'pagecount', name: 'PDF Page Counter', badge: 'PAGES', c: 'sky', desc: 'Count pages in a PDF and save a quick report.',
+      lead: 'Upload a PDF to count its pages and download a small text report.',
+      how: ['Choose a PDF.', 'Press Count pages.', 'Read the result or download the text report.'],
+      about: 'The page count is read from the PDF structure in your browser. It does not upload the document to a server.',
+      init: function (b) { pdfTool(b, { btn: 'Count pages',
+        run: function (c) { return PDFLib.PDFDocument.load(c.bytes).then(function (d) { var n = d.getPageCount(), report = 'PDF Engine page count\\nPages: ' + n + '\\n'; return { blob: new Blob([report], { type: 'text/plain;charset=utf-8' }), name: 'pdf-page-count.txt', note: 'This PDF contains ' + n + (n === 1 ? ' page.' : ' pages.') }; }); } }); } },
+
     { id: 'extract', name: 'Extract PDF Pages', badge: 'EXT', c: 'amber', desc: 'Save selected pages into a separate PDF.',
       lead: 'Choose exact pages to extract without changing your original file.',
       how: ['Choose a PDF.', 'Enter page numbers or ranges, such as 1-3, 5.', 'Create and download the extracted PDF.'],
@@ -755,6 +763,140 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
   }
   window.addEventListener('hashchange', routeHash);
   routeHash();
+
+  /* Optional in-browser QA runner: open the site with ?selftest=1. */
+  async function runPdfEngineSelfTests() {
+    window.__PDF_ENGINE_SELFTEST_ACTIVE = true;
+    window.__PDF_ENGINE_SELFTEST_OUTPUT = null;
+    var report = mk('section', 'wrap');
+    report.id = 'selftest-report';
+    report.style.cssText = 'margin:24px auto;padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--surface);';
+    report.innerHTML = '<h2>PDF Engine processing self-test</h2><p class="lead">Generating sample files locally in this browser and testing the actual tool processing functions.</p><p id="selftest-status" class="msg">Preparing test files…</p><div id="selftest-results"></div>';
+    document.body.insertBefore(report, document.body.firstChild);
+    var status = report.querySelector('#selftest-status'), results = report.querySelector('#selftest-results');
+    var rows = [];
+    function wait(ms) { return new Promise(function (resolve) { setTimeout(resolve, ms); }); }
+    async function until(fn, label, limit) {
+      var end = Date.now() + (limit || 18000);
+      while (Date.now() < end) { if (fn()) return; await wait(100); }
+      throw new Error('Timed out waiting for ' + label + '.');
+    }
+    function addResult(name, ok, detail) {
+      rows.push({ name: name, ok: ok, detail: detail || '' });
+      var table = '<table style="width:100%;border-collapse:collapse;margin-top:12px"><thead><tr><th style="text-align:left;padding:8px;border-bottom:1px solid var(--line)">Tool</th><th style="text-align:left;padding:8px;border-bottom:1px solid var(--line)">Result</th><th style="text-align:left;padding:8px;border-bottom:1px solid var(--line)">Details</th></tr></thead><tbody>';
+      table += rows.map(function (r) { return '<tr><td style="padding:8px;border-bottom:1px solid var(--line)"></td><td style="padding:8px;border-bottom:1px solid var(--line)"></td><td style="padding:8px;border-bottom:1px solid var(--line)"></td></tr>'; }).join('');
+      results.innerHTML = table + '</tbody></table>';
+      Array.from(results.querySelectorAll('tbody tr')).forEach(function (tr, i) {
+        tr.children[0].textContent = rows[i].name;
+        tr.children[1].textContent = rows[i].ok ? 'PASS' : 'FAIL';
+        tr.children[1].style.color = rows[i].ok ? 'var(--accent)' : 'var(--pdf)';
+        tr.children[2].textContent = rows[i].detail;
+      });
+      status.textContent = rows.filter(function (r) { return r.ok; }).length + ' passed · ' + rows.filter(function (r) { return !r.ok; }).length + ' failed';
+    }
+    async function makePdf(pageCount, formMode) {
+      var d = await PDFLib.PDFDocument.create();
+      for (var i = 1; i <= pageCount; i++) {
+        var p = d.addPage([595, 842]);
+        p.drawText('PDF Engine Sample page ' + i, { x: 40, y: 790, size: 18, font: await d.embedFont(PDFLib.StandardFonts.Helvetica) });
+      }
+      if (formMode) {
+        var form = d.getForm(), field = form.createTextField('sampleField');
+        field.setText('Test form value');
+        field.addToPage(d.getPages()[0], { x: 40, y: 730, width: 220, height: 28 });
+      }
+      return new File([await d.save()], formMode ? 'sample-form.pdf' : 'sample-' + pageCount + '-pages.pdf', { type: 'application/pdf' });
+    }
+    async function makeImage() {
+      var canvas = document.createElement('canvas'); canvas.width = 320; canvas.height = 180;
+      var ctx = canvas.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, 320, 180);
+      ctx.fillStyle = '#124a58'; ctx.font = '24px sans-serif'; ctx.fillText('PDF Engine test image', 12, 90);
+      var blob = await new Promise(function (resolve) { canvas.toBlob(resolve, 'image/jpeg', .9); });
+      if (!blob) throw new Error('Could not create test image.');
+      return new File([blob], 'sample-image.jpg', { type: 'image/jpeg' });
+    }
+    async function executeTest(test) {
+      try {
+        status.textContent = 'Testing ' + test.name + '…';
+        window.__PDF_ENGINE_SELFTEST_OUTPUT = null;
+        openTool(test.id);
+        var body = $('v-tool').querySelector('#tool-body');
+        var input = body.querySelector('input[type="file"]');
+        if (!input) throw new Error('File input did not render.');
+        var dt = new DataTransfer();
+        (test.files || [test.file]).forEach(function (f) { dt.items.add(f); });
+        input.files = dt.files;
+        input.dispatchEvent(new Event('change', { bubbles: true }));
+        await until(function () { var b = body.querySelector('.row .btn'); return b && !b.disabled; }, 'file validation');
+        (test.options || {}).constructor === Object && Object.keys(test.options || {}).forEach(function (key) {
+          var el = body.querySelector('[data-k="' + key + '"]'); if (el) { el.value = test.options[key]; el.dispatchEvent(new Event('input', { bubbles: true })); }
+        });
+        var button = body.querySelector('.row .btn');
+        if (!button) throw new Error('Processing button did not render.');
+        button.click();
+        await until(function () {
+          var out = window.__PDF_ENGINE_SELFTEST_OUTPUT;
+          var msg = body.querySelector('.msg');
+          return !!out || !!(msg && msg.classList.contains('err'));
+        }, 'processing output', 25000);
+        var out = window.__PDF_ENGINE_SELFTEST_OUTPUT;
+        if (!out || !out.blob || out.blob.size === 0) {
+          var m = body.querySelector('.msg');
+          throw new Error(m ? m.textContent : 'No output file was produced.');
+        }
+        var detail = out.name + ' (' + fmt(out.blob.size) + ')';
+        if (test.kind === 'pdf' || (!test.kind && /\.pdf$/i.test(out.name))) {
+          var check = await PDFLib.PDFDocument.load(await out.blob.arrayBuffer());
+          var count = check.getPageCount();
+          if (test.pages && count !== test.pages) throw new Error('Expected ' + test.pages + ' pages, got ' + count + '.');
+          detail += ' · valid PDF · ' + count + ' page(s)';
+          if (test.id === 'flatten' && check.getForm().getFields().length !== 0) throw new Error('Form fields remain interactive after flattening.');
+        } else if (test.kind === 'zip') {
+          var zip = await JSZip.loadAsync(out.blob), files = Object.keys(zip.files).filter(function (n) { return !zip.files[n].dir; });
+          if (test.entries && files.length !== test.entries) throw new Error('Expected ' + test.entries + ' ZIP entries, got ' + files.length + '.');
+          detail += ' · valid ZIP · ' + files.length + ' file(s)';
+        } else if (test.kind === 'text') {
+          var txt = await out.blob.text();
+          if (test.contains && txt.indexOf(test.contains) < 0) throw new Error('Expected text was not found in output.');
+          detail += ' · text output verified';
+        } else if (test.kind === 'jpg') {
+          var jpg = new Uint8Array(await out.blob.arrayBuffer());
+          if (!(jpg[0] === 255 && jpg[1] === 216)) throw new Error('Output is not a valid JPEG stream.');
+          detail += ' · JPEG signature verified';
+        }
+        addResult(test.name, true, detail);
+      } catch (e) { addResult(test.name, false, e && e.message ? e.message : String(e)); }
+    }
+    try {
+      var pdf3 = await makePdf(3, false), pdf1 = await makePdf(1, false), formPdf = await makePdf(1, true), img = await makeImage();
+      var tests = [
+        { name: 'Merge PDF', id: 'merge', files: [pdf3, pdf1], kind: 'pdf', pages: 4 },
+        { name: 'Split PDF (range)', id: 'split', file: pdf3, options: { mode: 'range', range: '1-2' }, kind: 'pdf', pages: 2 },
+        { name: 'Split PDF (ZIP)', id: 'split', file: pdf3, options: { mode: 'each' }, kind: 'zip', entries: 3 },
+        { name: 'Rotate PDF', id: 'rotate', file: pdf3, kind: 'pdf', pages: 3 },
+        { name: 'Remove Pages', id: 'remove', file: pdf3, options: { range: '2' }, kind: 'pdf', pages: 2 },
+        { name: 'Add Page Numbers', id: 'number', file: pdf3, kind: 'pdf', pages: 3 },
+        { name: 'PDF to JPG', id: 'pdf2jpg', file: pdf3, kind: 'zip', entries: 3 },
+        { name: 'JPG to PDF', id: 'jpg2pdf', file: img, kind: 'pdf', pages: 1 },
+        { name: 'Compress PDF', id: 'compress', file: pdf3, kind: 'pdf', pages: 3 },
+        { name: 'PDF Page Counter', id: 'pagecount', file: pdf3, kind: 'text', contains: 'Pages: 3' },
+        { name: 'Extract PDF Pages', id: 'extract', file: pdf3, options: { range: '1-2' }, kind: 'pdf', pages: 2 },
+        { name: 'Reorder PDF Pages', id: 'organize', file: pdf3, options: { order: '3,1,2' }, kind: 'pdf', pages: 3 },
+        { name: 'Add PDF Watermark', id: 'watermark', file: pdf3, kind: 'pdf', pages: 3 },
+        { name: 'Crop PDF Pages', id: 'crop', file: pdf3, kind: 'pdf', pages: 3 },
+        { name: 'PDF to Text', id: 'pdf2text', file: pdf3, kind: 'text', contains: 'PDF Engine Sample page 1' },
+        { name: 'Sign PDF', id: 'sign', file: pdf3, options: { sig: 'QA Test Signature' }, kind: 'pdf', pages: 3 },
+        { name: 'Add Text to PDF', id: 'addtext', file: pdf3, options: { text: 'QA Test Text' }, kind: 'pdf', pages: 3 },
+        { name: 'Flatten PDF Forms', id: 'flatten', file: formPdf, kind: 'pdf', pages: 1 }
+      ];
+      for (var i = 0; i < tests.length; i++) await executeTest(tests[i]);
+    } catch (e) { addResult('Test setup', false, e && e.message ? e.message : String(e)); }
+    window.__PDF_ENGINE_SELFTEST_ACTIVE = false;
+    status.textContent = rows.filter(function (r) { return r.ok; }).length + '/' + rows.length + ' tests passed · ' + rows.filter(function (r) { return !r.ok; }).length + ' failed';
+  }
+  if (new URLSearchParams(window.location.search).get('selftest') === '1') {
+    setTimeout(function () { runPdfEngineSelfTests(); }, 250);
+  }
 })();
 </script>
 </body>
