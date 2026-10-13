@@ -259,7 +259,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
           <button class="btn" data-go="merge">Merge PDF now</button>
           <button class="btn alt" data-go="compress">Compress PDF</button>
         </div>
-        <div class="trust"><span>12 free tools</span><span>Private</span><span>Works on phone</span></div>
+        <div class="trust"><span>17 free tools</span><span>Private</span><span>Works on phone</span></div>
       </div>
       <div class="scene" aria-hidden="true">
         <div class="stage" id="stage">
@@ -272,7 +272,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     </section>
 
     <h2 class="sec-title">Pick a tool</h2>
-    <p class="sec-sub">Twelve tools, all free. Move your mouse over a card to tilt it.</p>
+    <p class="sec-sub">Seventeen tools, all free. Move your mouse over a card to tilt it.</p>
     <div class="grid" id="tool-grid" role="list"></div>
 
     <section class="seo-tools" aria-labelledby="seo-tools-title">
@@ -291,6 +291,11 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
         <a href="/Easy-PDF/case-converter/">Text case converter</a>
         <a href="/Easy-PDF/percentage-calculator/">Percentage calculator</a>
         <a href="/Easy-PDF/age-calculator/">Age calculator</a>
+        <a href="/Easy-PDF/extract-pdf-pages/">Extract PDF pages</a>
+        <a href="/Easy-PDF/reorder-pdf-pages/">Reorder PDF pages</a>
+        <a href="/Easy-PDF/add-pdf-watermark/">Add PDF watermark</a>
+        <a href="/Easy-PDF/crop-pdf/">Crop PDF pages</a>
+        <a href="/Easy-PDF/pdf-to-text/">PDF to text</a>
       </div>
     </section>
 
@@ -298,7 +303,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     <div class="feats">
       <div class="feat"><span class="big">Private</span><h3>Browser processing</h3><p>Supported tools process selected files on your device instead of sending them to a PDF upload server.</p></div>
       <div class="feat"><span class="big">1 tap</span><h3>No account needed</h3><p>Open a tool, add your file, save the result. No email, no password.</p></div>
-      <div class="feat"><span class="big">Free</span><h3>No limits, no watermark</h3><p>Use every tool as often as you like. The output is always clean.</p></div>
+      <div class="feat"><span class="big">Free</span><h3>No account required</h3><p>Use the available tools without signing up. Processing limits depend on your device and the PDF size.</p></div>
     </div>
 
     <h2 class="sec-title">How it works</h2>
@@ -617,6 +622,45 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
           var nb = new Date(d2.getFullYear(), d1.getMonth(), d1.getDate()); if (nb <= d2) nb = new Date(d2.getFullYear() + 1, d1.getMonth(), d1.getDate());
           var left = Math.round((nb - d2) / 86400000); nx.textContent = 'Next birthday in ' + left + ' day' + (left === 1 ? '' : 's') + ' (turning ' + (nb.getFullYear() - d1.getFullYear()) + ').'; }
         $('age-dob').addEventListener('input', age); $('age-on').addEventListener('input', age); age(); } }
+,
+    { id: 'extract', name: 'Extract PDF Pages', badge: 'EXT', c: 'amber', desc: 'Save selected pages into a separate PDF.',
+      lead: 'Choose exact pages to extract without changing your original file.',
+      how: ['Choose a PDF.', 'Enter page numbers or ranges, such as 1-3, 5.', 'Create and download the extracted PDF.'],
+      about: 'Extracting creates a new PDF containing only the selected pages.',
+      init: function (b) { pdfTool(b, { btn: 'Extract pages',
+        options: '<label>Pages to keep<input data-k="range" type="text" placeholder="1-3, 5" value="1"></label>',
+        run: function (c) { var idx = parseRange(c.val('range'), c.pages); if (!idx || !idx.length) throw new Error('Enter pages to extract, for example 1-3, 5.'); return PDFLib.PDFDocument.load(c.bytes).then(function (src) { return PDFLib.PDFDocument.create().then(function (out) { return out.copyPages(src, idx).then(function (pages) { pages.forEach(function (p) { out.addPage(p); }); return out.save(); }); }); }).then(function (by) { return { blob: blobPdf(by), name: 'extracted-pages.pdf' }; }); } }); } },
+
+    { id: 'organize', name: 'Reorder PDF Pages', badge: 'ORD', c: 'green', desc: 'Reorder pages by entering the page sequence.',
+      lead: 'Create a new PDF in a custom page order.',
+      how: ['Choose a PDF.', 'Enter every page number in the desired order, separated by commas.', 'Save and review the reordered PDF.'],
+      about: 'Enter a full page sequence such as 3,1,2. Each original page number must appear exactly once.',
+      init: function (b) { pdfTool(b, { btn: 'Reorder pages',
+        options: '<label>New page order<input data-k="order" type="text" placeholder="3, 1, 2"></label>',
+        run: function (c) { var raw = c.val('order').split(',').map(function (x) { return x.trim(); }).filter(Boolean); if (raw.length !== c.pages) throw new Error('Enter all ' + c.pages + ' page numbers exactly once.'); var idx = raw.map(function (x) { var n = Number(x); if (!Number.isInteger(n) || n < 1 || n > c.pages) throw new Error('Page numbers must be between 1 and ' + c.pages + '.'); return n - 1; }); if (new Set(idx).size !== c.pages) throw new Error('Each page number must appear exactly once.'); return PDFLib.PDFDocument.load(c.bytes).then(function (src) { return PDFLib.PDFDocument.create().then(function (out) { return out.copyPages(src, idx).then(function (pages) { pages.forEach(function (p) { out.addPage(p); }); return out.save(); }); }); }).then(function (by) { return { blob: blobPdf(by), name: 'reordered.pdf' }; }); } }); } },
+
+    { id: 'watermark', name: 'Add PDF Watermark', badge: 'WM', c: 'red', desc: 'Stamp text across every page of a PDF.',
+      lead: 'Add a simple text watermark such as DRAFT or CONFIDENTIAL.',
+      how: ['Choose a PDF.', 'Enter watermark text and size.', 'Save the watermarked copy.'],
+      about: 'This tool adds visible text to each page. It does not encrypt the PDF or prevent copying.',
+      init: function (b) { pdfTool(b, { btn: 'Add watermark',
+        options: '<label>Watermark text<input data-k="text" type="text" value="DRAFT" maxlength="60"></label><label>Text size<select data-k="size"><option>24</option><option selected>40</option><option>60</option></select></label>',
+        run: function (c) { var text = c.val('text').trim(); if (!text) throw new Error('Enter watermark text.'); var size = +c.val('size'); return PDFLib.PDFDocument.load(c.bytes).then(function (d) { return d.embedFont(PDFLib.StandardFonts.Helvetica).then(function (font) { d.getPages().forEach(function (p) { var z = p.getSize(); p.drawText(text, { x: z.width * .12, y: z.height * .5, size: size, font: font, color: PDFLib.rgb(.55,.55,.55), rotate: PDFLib.degrees(35), opacity: .28 }); }); return d.save(); }); }).then(function (by) { return { blob: blobPdf(by), name: 'watermarked.pdf' }; }); } }); } },
+
+    { id: 'crop', name: 'Crop PDF Pages', badge: 'CRP', c: 'sky', desc: 'Crop equal margins from all pages.',
+      lead: 'Trim a percentage from each page edge to hide blank margins.',
+      how: ['Choose a PDF.', 'Set the margin percentage to trim from each edge.', 'Download and inspect the cropped copy.'],
+      about: 'Cropping changes the visible page area; it does not securely erase information outside the crop box.',
+      init: function (b) { pdfTool(b, { btn: 'Crop pages',
+        options: '<label>Margin to trim from each edge (%)<input data-k="margin" type="number" min="0" max="35" value="5"></label>',
+        run: function (c) { var pct = Number(c.val('margin')); if (!Number.isFinite(pct) || pct < 0 || pct > 35) throw new Error('Choose a margin between 0 and 35 percent.'); return PDFLib.PDFDocument.load(c.bytes).then(function (d) { d.getPages().forEach(function (p) { var z = p.getSize(), mx = z.width * pct / 100, my = z.height * pct / 100; p.setCropBox(mx, my, z.width - 2 * mx, z.height - 2 * my); }); return d.save(); }).then(function (by) { return { blob: blobPdf(by), name: 'cropped.pdf' }; }); } }); } },
+
+    { id: 'pdf2text', name: 'PDF to Text', badge: 'TXT', c: 'amber', desc: 'Extract selectable text from PDF pages.',
+      lead: 'Export text from text-based PDFs into a plain text file.',
+      how: ['Choose a PDF.', 'Wait while its pages are read.', 'Download the extracted text file.'],
+      about: 'Scanned pages without a text layer need OCR; this tool extracts text already embedded in the PDF.',
+      init: function (b) { pdfTool(b, { btn: 'Extract text',
+        run: function (c) { needJs(); return pdfjsLib.getDocument({ data: new Uint8Array(c.bytes.slice(0)) }).promise.then(function (pdf) { var parts = []; return seq(pdf.numPages, function (i) { c.say('Reading page ' + (i + 1) + ' of ' + pdf.numPages + '...'); return pdf.getPage(i + 1).then(function (pg) { return pg.getTextContent(); }).then(function (tc) { parts.push('\n--- Page ' + (i + 1) + ' ---\n' + tc.items.map(function (x) { return x.str || ''; }).join(' ')); }); }).then(function () { return { blob: new Blob([parts.join('\n')], { type: 'text/plain;charset=utf-8' }), name: 'extracted-text.txt' }; }); }); } }); } }
   ];
   var byId = {}; TOOLS.forEach(function (t) { byId[t.id] = t; });
 
