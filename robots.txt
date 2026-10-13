@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mureedabbas1.github.io/Easy-PDF/sitemap.xml
