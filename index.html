@@ -67,6 +67,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .wrap { max-width: 1120px; margin-inline: auto; position: relative; }
 
+.seo-tools{margin:34px 0;padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--glass)}.seo-tool-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.seo-tool-links a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:10px;text-decoration:none;background:var(--glass)}.seo-tool-links a:hover{background:var(--glass2);text-decoration:underline}
+
 /* top bar */
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 10px 14px; margin-top: 12px; border: 1px solid var(--line); border-radius: 18px; background: color-mix(in srgb, var(--bg2) 85%, transparent); backdrop-filter: blur(12px); box-shadow: 0 6px 0 color-mix(in srgb, var(--line) 80%, #000), 0 16px 28px var(--shadow); }
 .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; background: none; border: 0; cursor: pointer; padding: 0; }
@@ -273,11 +275,28 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     <p class="sec-sub">Twelve tools, all free. Move your mouse over a card to tilt it.</p>
     <div class="grid" id="tool-grid" role="list"></div>
 
-    <div class="ad" aria-label="Advertisement">Ad slot (728 x 90)</div>
+    <section class="seo-tools" aria-labelledby="seo-tools-title">
+      <h2 id="seo-tools-title" class="sec-title">PDF Tool Guides</h2>
+      <p class="sec-sub">Learn how to use each free tool and open it directly.</p>
+      <div class="seo-tool-links">
+        <a href="/Easy-PDF/merge-pdf/">Merge PDF online</a>
+        <a href="/Easy-PDF/split-pdf/">Split PDF pages</a>
+        <a href="/Easy-PDF/rotate-pdf/">Rotate PDF</a>
+        <a href="/Easy-PDF/remove-pdf-pages/">Remove PDF pages</a>
+        <a href="/Easy-PDF/add-page-numbers/">Add PDF page numbers</a>
+        <a href="/Easy-PDF/pdf-to-jpg/">Convert PDF to JPG</a>
+        <a href="/Easy-PDF/jpg-to-pdf/">Convert JPG to PDF</a>
+        <a href="/Easy-PDF/compress-pdf/">Compress PDF</a>
+        <a href="/Easy-PDF/word-counter/">Word counter</a>
+        <a href="/Easy-PDF/case-converter/">Text case converter</a>
+        <a href="/Easy-PDF/percentage-calculator/">Percentage calculator</a>
+        <a href="/Easy-PDF/age-calculator/">Age calculator</a>
+      </div>
+    </section>
 
     <h2 class="sec-title">Why people use PDF Engine</h2>
     <div class="feats">
-      <div class="feat"><span class="big">0</span><h3>Files uploaded</h3><p>Everything is processed on your own device. Nothing is sent to a server.</p></div>
+      <div class="feat"><span class="big">Private</span><h3>Browser processing</h3><p>Supported tools process selected files on your device instead of sending them to a PDF upload server.</p></div>
       <div class="feat"><span class="big">1 tap</span><h3>No account needed</h3><p>Open a tool, add your file, save the result. No email, no password.</p></div>
       <div class="feat"><span class="big">Free</span><h3>No limits, no watermark</h3><p>Use every tool as often as you like. The output is always clean.</p></div>
     </div>
@@ -628,7 +647,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     panel.querySelector('.how').innerHTML = t.how.map(function (s) { return '<li>' + s + '</li>'; }).join('');
     panel.querySelector('.chips').innerHTML = TOOLS.filter(function (x) { return x.id !== id; }).slice(0, 6).map(function (x) { return '<button data-go="' + x.id + '">' + x.name + '</button>'; }).join('');
     host.appendChild(panel);
-    host.appendChild(mk('div', 'ad', 'Ad slot (responsive)'));
+
     t.init($('tool-body'));
     show('tool');
   }
@@ -658,7 +677,9 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
 
   function routeHash() {
     var match = window.location.hash.match(/^#tool=([a-z0-9-]+)$/i);
-    if (match && byId[match[1]]) openTool(match[1]);
+    if (match && byId[match[1]]) { openTool(match[1]); return; }
+    var view = window.location.hash.replace(/^#/, '');
+    if (['home', 'guides', 'about', 'privacy', 'contact'].indexOf(view) !== -1) show(view);
     else show('home');
   }
   window.addEventListener('hashchange', routeHash);
