@@ -4,7 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PDF Engine</title>
-<meta name="description" content="Free online PDF tools: merge, split, rotate, compress and convert PDF files, plus word counter, case converter and calculators. Files stay in your browser.">
+<meta name="description" content="Use free online PDF tools to merge, split, rotate, remove pages, add page numbers, compress PDFs and convert PDF to JPG or images to PDF. Files are processed in your browser.">
+<link rel="canonical" href="https://mureedabbas1.github.io/Easy-PDF/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Engine — Free Online PDF Tools">
+<meta property="og:description" content="Merge, split, rotate, compress and convert PDFs free in your browser. No sign-up required.">
+<meta property="og:url" content="https://mureedabbas1.github.io/Easy-PDF/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PDF Engine — Free Online PDF Tools">
+<meta name="twitter:description" content="Free PDF tools that process files in your browser.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=DM+Sans:wght@400;500;700&display=swap">
@@ -318,7 +327,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
         <h3>Analytics</h3>
         <p>We may use privacy-friendly analytics to count visits and understand which tools are used. This data does not identify you personally.</p>
         <h3>Contact</h3>
-        <p>For privacy questions, use the details on the Contact page.</p>
+        <p>For privacy questions, use the Contact page to reach the project issue tracker. Do not post private documents or sensitive personal information publicly.</p>
       </div></div>
   </main>
 
@@ -326,9 +335,9 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     <div class="panel"><button class="back" data-go="home">&larr; All tools</button>
       <div class="prose">
         <h2>Contact</h2>
-        <p>Found a bug or want a new tool? Send us an email and we will reply as soon as we can.</p>
-        <p><b>Email:</b> <span style="user-select:all">hello@yourdomain.com</span></p>
-        <p class="lead">Replace this address with your real inbox before launch.</p>
+        <p>Found a bug or want to request a tool? Open an issue on our public GitHub repository.</p>
+        <p><a class="btn" href="https://github.com/Mureedabbas1/Easy-PDF/issues" target="_blank" rel="noopener noreferrer">Contact PDF Engine on GitHub</a></p>
+        <p class="lead">Please do not include private documents or personal information in a public issue.</p>
       </div></div>
   </main>
 
@@ -647,7 +656,13 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     if (t && !t.contains(e.relatedTarget)) { t.style.setProperty('--rx', '0deg'); t.style.setProperty('--ry', '0deg'); }
   });
 
-  show('home');
+  function routeHash() {
+    var match = window.location.hash.match(/^#tool=([a-z0-9-]+)$/i);
+    if (match && byId[match[1]]) openTool(match[1]);
+    else show('home');
+  }
+  window.addEventListener('hashchange', routeHash);
+  routeHash();
 })();
 </script>
 </body>
