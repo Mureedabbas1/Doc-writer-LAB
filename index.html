@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PDF Engine</title>
-<meta name="description" content="Use free online PDF tools to merge, split, rotate, remove pages, add page numbers, compress PDFs and convert PDF to JPG or images to PDF. Files are processed in your browser.">
+<meta name="description" content="Use 20 free online PDF tools: merge, split, compress, convert, sign, add text, flatten forms, organise pages and more. Browser-based PDF utilities for everyday work.">
 <link rel="canonical" href="https://mureedabbas1.github.io/Easy-PDF/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
@@ -259,7 +259,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
           <button class="btn" data-go="merge">Merge PDF now</button>
           <button class="btn alt" data-go="compress">Compress PDF</button>
         </div>
-        <div class="trust"><span>17 free tools</span><span>Private</span><span>Works on phone</span></div>
+        <div class="trust"><span>20 free tools</span><span>Private</span><span>Works on phone</span></div>
       </div>
       <div class="scene" aria-hidden="true">
         <div class="stage" id="stage">
@@ -296,6 +296,9 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
         <a href="/Easy-PDF/add-pdf-watermark/">Add PDF watermark</a>
         <a href="/Easy-PDF/crop-pdf/">Crop PDF pages</a>
         <a href="/Easy-PDF/pdf-to-text/">PDF to text</a>
+        <a href="/Easy-PDF/sign-pdf/">Sign PDF</a>
+        <a href="/Easy-PDF/add-text-to-pdf/">Add text to PDF</a>
+        <a href="/Easy-PDF/flatten-pdf-forms/">Flatten PDF forms</a>
       </div>
     </section>
 
@@ -661,6 +664,30 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
       about: 'Scanned pages without a text layer need OCR; this tool extracts text already embedded in the PDF.',
       init: function (b) { pdfTool(b, { btn: 'Extract text',
         run: function (c) { needJs(); return pdfjsLib.getDocument({ data: new Uint8Array(c.bytes.slice(0)) }).promise.then(function (pdf) { var parts = []; return seq(pdf.numPages, function (i) { c.say('Reading page ' + (i + 1) + ' of ' + pdf.numPages + '...'); return pdf.getPage(i + 1).then(function (pg) { return pg.getTextContent(); }).then(function (tc) { parts.push('\n--- Page ' + (i + 1) + ' ---\n' + tc.items.map(function (x) { return x.str || ''; }).join(' ')); }); }).then(function () { return { blob: new Blob([parts.join('\n')], { type: 'text/plain;charset=utf-8' }), name: 'extracted-text.txt' }; }); }); } }); } }
+
+    { id: 'sign', name: 'Sign PDF', badge: 'SIGN', c: 'green', desc: 'Add a typed signature to a PDF page.',
+      lead: 'Place a visible typed signature on the page you choose.',
+      how: ['Choose a PDF.', 'Enter your name and choose a page and position.', 'Download the signed copy and review it.'],
+      about: 'This adds a visual, typed signature only. It is not a cryptographic digital signature or identity verification.',
+      init: function (b) { pdfTool(b, { btn: 'Add signature',
+        options: '<label>Signature name<input data-k="sig" type="text" maxlength="80" placeholder="Your full name"></label><label>Page number<input data-k="page" type="number" min="1" value="1"></label><label>Position<select data-k="pos"><option value="left">Bottom left</option><option value="center" selected>Bottom centre</option><option value="right">Bottom right</option></select></label><label>Text size<select data-k="size"><option>18</option><option selected>24</option><option>30</option><option>36</option></select></label>',
+        run: function (c) { var sig = c.val('sig').trim(), pageNo = Number(c.val('page')), size = Number(c.val('size')), pos = c.val('pos'); if (!sig) throw new Error('Enter the name to sign with.'); if (!Number.isInteger(pageNo) || pageNo < 1 || pageNo > c.pages) throw new Error('Choose a page from 1 to ' + c.pages + '.'); return PDFLib.PDFDocument.load(c.bytes).then(function (d) { return d.embedFont(PDFLib.StandardFonts.HelveticaOblique).then(function (font) { var p = d.getPages()[pageNo - 1], z = p.getSize(), w = font.widthOfTextAtSize(sig, size), x = pos === 'left' ? 36 : pos === 'right' ? z.width - 36 - w : (z.width - w) / 2; if (x < 8) x = 8; p.drawText(sig, { x: x, y: 38, size: size, font: font, color: PDFLib.rgb(.08,.18,.3) }); return d.save(); }); }).then(function (by) { return { blob: blobPdf(by), name: 'signed.pdf', note: 'Typed signature added. This is not a verified digital signature.' }; }); } }); } },
+
+    { id: 'addtext', name: 'Add Text to PDF', badge: 'TXT+', c: 'sky', desc: 'Place a text note or label on PDF pages.',
+      lead: 'Add a short note, label or reference directly onto a PDF.',
+      how: ['Choose a PDF.', 'Enter your text and select the page and position.', 'Download the updated PDF.'],
+      about: 'Text is placed visibly over the existing page. It does not edit or remove original text underneath.',
+      init: function (b) { pdfTool(b, { btn: 'Add text',
+        options: '<label>Text to add<input data-k="text" type="text" maxlength="180" placeholder="Enter text"></label><label>Page<select data-k="page"><option value="all">Every page</option><option value="1">Page 1</option></select></label><label>Horizontal position<select data-k="pos"><option value="left">Left</option><option value="center" selected>Centre</option><option value="right">Right</option></select></label><label>Vertical position<select data-k="vert"><option value="top">Top</option><option value="middle">Middle</option><option value="bottom" selected>Bottom</option></select></label><label>Text size<select data-k="size"><option>10</option><option selected>14</option><option>18</option><option>24</option></select></label>',
+        run: function (c) { var txt = c.val('text').trim(), pageChoice = c.val('page'), pos = c.val('pos'), vert = c.val('vert'), size = Number(c.val('size')); if (!txt) throw new Error('Enter the text to add.'); if (pageChoice !== 'all' && (!Number.isInteger(Number(pageChoice)) || Number(pageChoice) < 1 || Number(pageChoice) > c.pages)) throw new Error('Choose a valid page number.'); return PDFLib.PDFDocument.load(c.bytes).then(function (d) { return d.embedFont(PDFLib.StandardFonts.Helvetica).then(function (font) { var pages = d.getPages(), chosen = pageChoice === 'all' ? pages : [pages[Number(pageChoice) - 1]]; chosen.forEach(function (p) { var z = p.getSize(), w = font.widthOfTextAtSize(txt, size), x = pos === 'left' ? 28 : pos === 'right' ? z.width - 28 - w : (z.width - w) / 2, y = vert === 'top' ? z.height - size - 28 : vert === 'middle' ? (z.height - size) / 2 : 28; p.drawText(txt, { x: Math.max(8,x), y: Math.max(8,y), size: size, font: font, color: PDFLib.rgb(.12,.2,.28) }); }); return d.save(); }); }).then(function (by) { return { blob: blobPdf(by), name: 'text-added.pdf' }; }); } }); } },
+
+    { id: 'flatten', name: 'Flatten PDF Forms', badge: 'FLAT', c: 'amber', desc: 'Make interactive form fields non-editable.',
+      lead: 'Save form field appearances into the page so the filled form is less easily changed.',
+      how: ['Choose a PDF with interactive form fields.', 'Press Flatten form fields.', 'Download and check the flattened copy.'],
+      about: 'Flattening removes interactive form controls after drawing their appearances. It does not encrypt the document or provide tamper-proof legal evidence.',
+      init: function (b) { pdfTool(b, { btn: 'Flatten form fields',
+        run: function (c) { return PDFLib.PDFDocument.load(c.bytes).then(function (d) { var form = d.getForm(); if (!form.getFields().length) throw new Error('This PDF has no supported interactive form fields to flatten.'); form.updateFieldAppearances(); form.flatten(); return d.save(); }).then(function (by) { return { blob: blobPdf(by), name: 'flattened-form.pdf' }; }); } }); } }
+
   ];
   var byId = {}; TOOLS.forEach(function (t) { byId[t.id] = t; });
 
