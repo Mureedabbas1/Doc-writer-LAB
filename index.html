@@ -627,13 +627,6 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
           var left = Math.round((nb - d2) / 86400000); nx.textContent = 'Next birthday in ' + left + ' day' + (left === 1 ? '' : 's') + ' (turning ' + (nb.getFullYear() - d1.getFullYear()) + ').'; }
         $('age-dob').addEventListener('input', age); $('age-on').addEventListener('input', age); age(); } }
 ,
-    { id: 'pagecount', name: 'PDF Page Counter', badge: 'PAGES', c: 'sky', desc: 'Count pages in a PDF and save a quick report.',
-      lead: 'Upload a PDF to count its pages and download a small text report.',
-      how: ['Choose a PDF.', 'Press Count pages.', 'Read the result or download the text report.'],
-      about: 'The page count is read from the PDF structure in your browser. It does not upload the document to a server.',
-      init: function (b) { pdfTool(b, { btn: 'Count pages',
-        run: function (c) { return PDFLib.PDFDocument.load(c.bytes).then(function (d) { var n = d.getPageCount(), report = 'PDF Engine page count\\nPages: ' + n + '\\n'; return { blob: new Blob([report], { type: 'text/plain;charset=utf-8' }), name: 'pdf-page-count.txt', note: 'This PDF contains ' + n + (n === 1 ? ' page.' : ' pages.') }; }); } }); } },
-
     { id: 'extract', name: 'Extract PDF Pages', badge: 'EXT', c: 'amber', desc: 'Save selected pages into a separate PDF.',
       lead: 'Choose exact pages to extract without changing your original file.',
       how: ['Choose a PDF.', 'Enter page numbers or ranges, such as 1-3, 5.', 'Create and download the extracted PDF.'],
@@ -879,7 +872,6 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
         { name: 'PDF to JPG', id: 'pdf2jpg', file: pdf3, kind: 'zip', entries: 3 },
         { name: 'JPG to PDF', id: 'jpg2pdf', file: img, kind: 'pdf', pages: 1 },
         { name: 'Compress PDF', id: 'compress', file: pdf3, kind: 'pdf', pages: 3 },
-        { name: 'PDF Page Counter', id: 'pagecount', file: pdf3, kind: 'text', contains: 'Pages: 3' },
         { name: 'Extract PDF Pages', id: 'extract', file: pdf3, options: { range: '1-2' }, kind: 'pdf', pages: 2 },
         { name: 'Reorder PDF Pages', id: 'organize', file: pdf3, options: { order: '3,1,2' }, kind: 'pdf', pages: 3 },
         { name: 'Add PDF Watermark', id: 'watermark', file: pdf3, kind: 'pdf', pages: 3 },
