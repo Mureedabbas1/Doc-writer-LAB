@@ -22,12 +22,17 @@ https://mureedabbas1.github.io/Easy-PDF/
 - Add a text watermark
 - Crop PDF pages (visual crop only; not secure redaction)
 - Extract selectable text from PDF (scanned image-only pages need OCR)
+- Sign PDF with a visible typed signature (not a verified digital signature)
+- Add text to PDF pages
+- Flatten supported interactive PDF form fields
 
 ### Text and calculators
 - Word Counter
 - Case Converter
 - Percentage Calculator
 - Age Calculator
+
+Total: 20 tools (17 existing tools plus these 3 additions).
 
 ## SEO files
 
