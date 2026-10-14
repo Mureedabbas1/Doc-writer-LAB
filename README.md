@@ -1,12 +1,12 @@
-# PDF Engine
+# Doc Writer Lab
 
-A responsive, browser-based PDF utility website published with GitHub Pages.
+Doc Writer Lab is a browser-based document utility website published with GitHub Pages.
 
 ## Live website
 
-https://mureedabbas1.github.io/Easy-PDF/
+https://mureedabbas1.github.io/Doc-writer-LAB/
 
-## Tools currently included
+## Tools included
 
 ### PDF tools
 - Merge PDF
@@ -26,36 +26,34 @@ https://mureedabbas1.github.io/Easy-PDF/
 - Add text to PDF pages
 - Flatten supported interactive PDF form fields
 
-### Text and calculators
+### Text tools and calculators
 - Word Counter
 - Case Converter
 - Percentage Calculator
 - Age Calculator
 
-Total: 20 tools (17 existing tools plus these 3 additions).
+Total: 20 tools.
 
 ## SEO files
 
 - `sitemap.xml` lists the homepage and individual tool landing pages.
 - `robots.txt` allows crawling and points crawlers to the sitemap.
-- Tool landing pages have unique titles, descriptions, canonical URLs, and structured WebPage metadata.
+- Tool landing pages should use unique titles, descriptions, canonical URLs, and structured metadata.
 
 ## Privacy and limitations
 
-The available PDF workflows process selected files in the browser; this repository does not provide a PDF upload server. Third-party CDN scripts and Google Fonts are loaded when the site is used, so the privacy policy should be reviewed to accurately describe those external requests.
-
-PDF compression converts pages to images and can reduce text searchability. Cropping changes the visible page area but does not securely erase hidden content. The watermark is a visible text label, not a security control. PDF-to-text extracts existing text and does not perform OCR.
+PDF workflows process selected files in the browser; this repository does not provide a PDF upload server. Third-party CDN scripts and Google Fonts may be loaded when the site is used. PDF compression converts pages to images and can reduce text searchability. Cropping changes the visible page area but does not securely erase hidden content. The watermark is a visible text label, not a security control. PDF-to-text extracts existing text and does not perform OCR.
 
 ## Contact
 
 Report issues or request features at:
-https://github.com/Mureedabbas1/Easy-PDF/issues
+https://github.com/Mureedabbas1/Doc-writer-LAB/issues
 
 Do not post private documents, passwords, or sensitive personal information in public issues.
 
 ## Deployment
 
-GitHub Pages uses the `main` branch root. After commits, allow the Pages deployment workflow to finish before checking the live site.
+GitHub Pages is configured to publish from the `main` branch root. After commits, allow the Pages deployment to finish before checking the live site.
 
 ## License
 
