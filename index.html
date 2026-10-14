@@ -243,7 +243,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
   <header class="bar">
     <button class="logo" data-go="home" aria-label="Doc Writer Lab home">
       <svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="2" width="26" height="34" rx="5" fill="var(--pdf)"/><path d="M24 2l7 7h-5a2 2 0 01-2-2z" fill="#fff" opacity=".45"/><rect x="10" y="17" width="16" height="3" rx="1.5" fill="#fff"/><rect x="10" y="24" width="11" height="3" rx="1.5" fill="#fff"/><circle cx="30" cy="30" r="8" fill="var(--accent)"/><path d="M26.5 30l2.5 2.5 4.5-5" stroke="var(--accent-fg)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      PDF<em>Engine</em>
+      Doc Writer<em>Lab</em>
     </button>
     <nav class="nav" aria-label="Main">
       <button data-go="home" data-nav="home">Tools</button>
@@ -596,7 +596,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
       lead: 'Type or paste text, then press a button to change its case.',
       how: ['Paste your text into the box.', 'Press the case you want.', 'Press Copy to use the result.'],
       about: 'Fix text that was typed with caps lock on, format headings in Title Case or tidy a block of text into sentence case. Everything happens in your browser.',
-      init: function (b) { b.innerHTML = '<label class="tag" for="cc-text">Your text</label><textarea id="cc-text" placeholder="Type or paste text here...">easy pdf makes everyday document jobs simple. try the buttons below.</textarea><div class="row"><button class="btn" data-c="upper">UPPERCASE</button><button class="btn" data-c="lower">lowercase</button><button class="btn" data-c="title">Title Case</button><button class="btn" data-c="sentence">Sentence case</button><button class="btn alt" data-c="copy">Copy</button></div><p class="msg" id="cc-msg" role="status"></p>';
+      init: function (b) { b.innerHTML = '<label class="tag" for="cc-text">Your text</label><textarea id="cc-text" placeholder="Type or paste text here...">Doc Writer Lab makes everyday document jobs simple. try the buttons below.</textarea><div class="row"><button class="btn" data-c="upper">UPPERCASE</button><button class="btn" data-c="lower">lowercase</button><button class="btn" data-c="title">Title Case</button><button class="btn" data-c="sentence">Sentence case</button><button class="btn alt" data-c="copy">Copy</button></div><p class="msg" id="cc-msg" role="status"></p>';
         var ta = $('cc-text');
         b.addEventListener('click', function (e) { var k = e.target.getAttribute && e.target.getAttribute('data-c'); if (!k) return; var t = ta.value;
           if (k === 'upper') ta.value = t.toUpperCase(); else if (k === 'lower') ta.value = t.toLowerCase();
