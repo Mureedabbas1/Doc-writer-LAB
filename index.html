@@ -374,7 +374,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
 
   <footer class="foot">
     <span>&copy; 2026 PDF Engine</span>
-    <nav aria-label="Footer"><button data-go="about">About</button><button data-go="privacy">Privacy Policy</button><button data-go="contact">Contact</button></nav>
+    <nav aria-label="Footer"><button data-go="about">About</button><button data-go="privacy">Privacy Policy</button><button data-go="contact">Contact</button><a href="guides/" class="link">Guides</a><a href="terms/" class="link">Terms</a></nav>
   </footer>
 </div>
 
@@ -735,8 +735,26 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
   $('tool-grid').innerHTML = TOOLS.map(function (t) {
     return '<button class="tool c-' + t.c + '" role="listitem" data-go="' + t.id + '"><span class="ico">' + t.badge + '</span><h3>' + t.name + '</h3><p>' + t.desc + '</p><span class="go">Open tool &rarr;</span></button>';
   }).join('');
+  var SEO_GUIDES = [
+    ['All PDF Guides','guides/','Browse all practical PDF tutorials and document tips.'],
+    ['How to Merge PDF Files','how-to-merge-pdf/','Combine files and verify the page order.'],
+    ['Compress PDF Without Losing Quality','compress-pdf-without-losing-quality/','Understand image quality and selectable text.'],
+    ['How to Split PDF Pages','how-to-split-pdf-pages/','Extract ranges or separate pages.'],
+    ['Convert PDF to JPG','convert-pdf-to-jpg-guide/','Turn pages into image files.'],
+    ['Convert JPG to PDF','convert-jpg-to-pdf-guide/','Combine photos and scanned pages.'],
+    ['Add a Signature to PDF','add-signature-to-pdf-guide/','Learn about visible and digital signatures.'],
+    ['Remove Pages from PDF','remove-pages-from-pdf-guide/','Delete unneeded pages safely.'],
+    ['Extract Text from PDF','extract-text-from-pdf-guide/','Understand selectable text and OCR.'],
+    ['PDF File Privacy Guide','pdf-file-privacy-guide/','Handle sensitive files more carefully.'],
+    ['PDF Compression Explained','pdf-compression-explained/','Compare size, quality and searchability.'],
+    ['Flatten PDF Forms Guide','pdf-form-flattening-guide/','Learn how interactive form fields change.'],
+    ['PDF vs Word','pdf-vs-word-guide/','Choose the right format for each task.'],
+    ['Terms and Conditions','terms/','Read the terms for using PDF Engine.']
+  ];
   ['home-guides', 'all-guides'].forEach(function (id, n) {
-    $(id).innerHTML = GUIDES.slice(0, n ? 6 : 3).map(function (g) { return '<article class="guide"><h3>' + g.t + '</h3><p>' + g.p + '</p><button class="link" data-go="' + g.go + '">Open the tool &rarr;</button></article>'; }).join('');
+    var toolCards = GUIDES.slice(0, n ? 6 : 3).map(function (g) { return '<article class="guide"><h3>' + g.t + '</h3><p>' + g.p + '</p><button class="link" data-go="' + g.go + '">Open the tool &rarr;</button></article>'; }).join('');
+    var seoCards = (n ? SEO_GUIDES : SEO_GUIDES.slice(0, 4)).map(function (g) { return '<article class="guide"><h3><a href="' + g[1] + '" style="color:var(--fg)">' + g[0] + '</a></h3><p>' + g[2] + '</p><a class="link" href="' + g[1] + '">Read guide &rarr;</a></article>'; }).join('');
+    $(id).innerHTML = toolCards + seoCards;
   });
 
   /* ---------- 3D motion ---------- */
