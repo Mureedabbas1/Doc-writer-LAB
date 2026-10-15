@@ -326,26 +326,26 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
       <h2 id="seo-tools-title" class="sec-title">PDF Tool Guides</h2>
       <p class="sec-sub">Learn how to use each free tool and open it directly.</p>
       <div class="seo-tool-links">
-        <a href="#tool=merge">Merge PDF online</a>
-        <a href="#tool=split">Split PDF pages</a>
-        <a href="#tool=rotate">Rotate PDF</a>
-        <a href="#tool=remove">Remove PDF pages</a>
-        <a href="#tool=number">Add PDF page numbers</a>
-        <a href="#tool=pdf2jpg">Convert PDF to JPG</a>
-        <a href="#tool=jpg2pdf">Convert JPG to PDF</a>
-        <a href="#tool=compress">Compress PDF</a>
-        <a href="#tool=words">Word counter</a>
-        <a href="#tool=case">Text case converter</a>
-        <a href="#tool=percent">Percentage calculator</a>
-        <a href="#tool=age">Age calculator</a>
-        <a href="#tool=extract">Extract PDF pages</a>
-        <a href="#tool=organize">Reorder PDF pages</a>
-        <a href="#tool=watermark">Add PDF watermark</a>
-        <a href="#tool=crop">Crop PDF pages</a>
-        <a href="#tool=pdf2text">PDF to text</a>
-        <a href="#tool=sign">Sign PDF</a>
-        <a href="#tool=addtext">Add text to PDF</a>
-        <a href="#tool=flatten">Flatten PDF forms</a>
+        <a href="/tool.html?tool=merge">Merge PDF online</a>
+        <a href="/tool.html?tool=split">Split PDF pages</a>
+        <a href="/tool.html?tool=rotate">Rotate PDF</a>
+        <a href="/tool.html?tool=remove">Remove PDF pages</a>
+        <a href="/tool.html?tool=number">Add PDF page numbers</a>
+        <a href="/tool.html?tool=pdf2jpg">Convert PDF to JPG</a>
+        <a href="/tool.html?tool=jpg2pdf">Convert JPG to PDF</a>
+        <a href="/tool.html?tool=compress">Compress PDF</a>
+        <a href="/tool.html?tool=words">Word counter</a>
+        <a href="/tool.html?tool=case">Text case converter</a>
+        <a href="/tool.html?tool=percent">Percentage calculator</a>
+        <a href="/tool.html?tool=age">Age calculator</a>
+        <a href="/tool.html?tool=extract">Extract PDF pages</a>
+        <a href="/tool.html?tool=organize">Reorder PDF pages</a>
+        <a href="/tool.html?tool=watermark">Add PDF watermark</a>
+        <a href="/tool.html?tool=crop">Crop PDF pages</a>
+        <a href="/tool.html?tool=pdf2text">PDF to text</a>
+        <a href="/tool.html?tool=sign">Sign PDF</a>
+        <a href="/tool.html?tool=addtext">Add text to PDF</a>
+        <a href="/tool.html?tool=flatten">Flatten PDF forms</a>
       </div>
     </section>
 
@@ -776,7 +776,11 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-go]'); if (!b) return;
     var k = b.dataset.go;
-    var nextHash = byId[k] ? '#tool=' + k : '#' + k;
+    if (byId[k]) {
+      window.location.href = '/tool.html?tool=' + encodeURIComponent(k);
+      return;
+    }
+    var nextHash = '#' + k;
     if (window.location.hash === nextHash) routeHash();
     else window.location.hash = nextHash;
   });
@@ -819,6 +823,8 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
   });
 
   function routeHash() {
+    var queryTool = new URLSearchParams(window.location.search).get('tool');
+    if (queryTool && byId[queryTool]) { openTool(queryTool); return; }
     var match = window.location.hash.match(/^#tool=([a-z0-9-]+)$/i);
     if (match && byId[match[1]]) { openTool(match[1]); return; }
     var view = window.location.hash.replace(/^#/, '');
