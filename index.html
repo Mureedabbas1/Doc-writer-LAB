@@ -852,6 +852,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
 
   /* Optional in-browser QA runner: open the site with ?selftest=1. */
   async function runPdfEngineSelfTests() {
+    await need();
     window.__PDF_ENGINE_SELFTEST_ACTIVE = true;
     window.__PDF_ENGINE_SELFTEST_OUTPUT = null;
     var report = mk('section', 'wrap');
