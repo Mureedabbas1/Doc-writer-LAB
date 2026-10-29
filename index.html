@@ -425,21 +425,37 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
   </footer>
 </div>
 
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- PDF processing libraries load on first PDF-tool use. -->
 <script>
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var uid = 0;
-  window.addEventListener('DOMContentLoaded', function () { if (window.pdfjsLib) { pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; } }, { once: true });
-
+  var pdfLibrariesPromise = null;
+  function loadScript(src, test) {
+    if (test()) return Promise.resolve();
+    return new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = function () { test() ? resolve() : reject(new Error('A PDF library failed to initialize.')); };
+      script.onerror = function () { reject(new Error('Could not load PDF tools. Check your internet connection and try again.')); };
+      document.head.appendChild(script);
+    });
+  }
+  function need() {
+    if (window.PDFLib && window.JSZip && window.pdfjsLib) return Promise.resolve();
+    if (!pdfLibrariesPromise) {
+      pdfLibrariesPromise = loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js', function () { return !!window.PDFLib; })
+        .then(function () { return loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js', function () { return !!window.JSZip; }); })
+        .then(function () { return loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', function () { return !!window.pdfjsLib; }); })
+        .then(function () { window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; })
+        .catch(function (err) { pdfLibrariesPromise = null; throw err; });
+    }
+    return pdfLibrariesPromise;
+  }
   function fmt(n) { return n > 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB'; }
   function num(x) { return String(+x.toFixed(4)); }
   function seq(n, fn) { var p = Promise.resolve(); for (var i = 0; i < n; i++) (function (k) { p = p.then(function () { return fn(k); }); })(i); return p; }
-  function need() {
-    if (!window.PDFLib) throw new Error('The PDF engine did not load. Check your internet and reload the page.');
-  }
   function mk(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
 
   function parseRange(s, n) {
@@ -505,7 +521,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     clear.onclick = function () { files = []; out.innerHTML = ''; draw(); };
     go.onclick = function () {
       go.disabled = true; say('Working...');
-      Promise.resolve().then(function () { need(); return o.run(files); }).then(function (bytes) {
+      need().then(function () { return o.run(files); }).then(function (bytes) {
         deliver(out, blobPdf(bytes), o.out); say('Done. Your PDF is ready.');
       }).catch(function (e) { say('Could not finish: ' + (e && e.message ? e.message : 'unknown error') + '. Check that the files are not password protected.', 1); })
         .then(function () { go.disabled = files.length < o.min; });
@@ -524,7 +540,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
         var f = fl[0]; if (!f) return;
         if (!isPdf(f)) { say('Please choose a PDF file.', 1); return; }
         say('Reading file...');
-        Promise.resolve().then(function () { need(); return f.arrayBuffer(); })
+        need().then(function () { return f.arrayBuffer(); })
           .then(function (buf) { return PDFLib.PDFDocument.load(buf).then(function (d) { return { buf: buf, n: d.getPageCount() }; }); })
           .then(function (r) { bytes = r.buf; pages = r.n; info.textContent = f.name + '  |  ' + pages + (pages === 1 ? ' page' : ' pages') + '  |  ' + fmt(f.size); opts.hidden = false; run.disabled = false; out.innerHTML = ''; say(''); })
           .catch(function () { say('Could not open this PDF. It may be password protected or damaged.', 1); });
@@ -533,8 +549,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     [info, opts, row, msg, out].forEach(function (e) { body.appendChild(e); });
     run.onclick = function () {
       run.disabled = true; say('Working...');
-      Promise.resolve().then(function () {
-        need();
+      need().then(function () {
         return cfg.run({ bytes: bytes, pages: pages, say: say, val: function (k) { return opts.querySelector('[data-k="' + k + '"]').value; } });
       }).then(function (r) { deliver(out, r.blob, r.name); say(r.note || 'Done. Your file is ready.'); })
         .catch(function (e) { say(e && e.message ? e.message : 'Something went wrong.', 1); })
