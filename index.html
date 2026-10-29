@@ -802,7 +802,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
   });
 
   $('tool-grid').innerHTML = TOOLS.map(function (t) {
-    return '<button class="tool c-' + t.c + '" role="listitem" data-go="' + t.id + '"><span class="ico">' + t.badge + '</span><h3>' + t.name + '</h3><p>' + t.desc + '</p><span class="go">Open tool &rarr;</span></button>';
+    return '<button class="tool c-' + t.c + '" data-go="' + t.id + '"><span class="ico">' + t.badge + '</span><h3>' + t.name + '</h3><p>' + t.desc + '</p><span class="go">Open tool &rarr;</span></button>';
   }).join('');
   var SEO_GUIDES = [
     ['All PDF Guides','guides/','Browse all practical PDF tutorials and document tips.'],
