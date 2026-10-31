@@ -42,7 +42,7 @@
 const defs=[
 ['website-url','Website URL QR','Open a website or landing page.','URL','https://example.com'],
 ['text','Text QR','Share a note, message or plain text.','Text','Write your text here'],
-['email','Email QR','Open an email draft with recipient and subject.','Email address','hello@example.com'],
+['email','Email QR','Open an email draft with recipient and subject.','Email address','hello@example.com','Subject','Optional subject'],
 ['phone','Phone Number QR','Let scanners call a phone number.','Phone number','+923001234567'],
 ['whatsapp','WhatsApp QR','Start a WhatsApp chat with an optional message.','WhatsApp number (with country code)','923001234567','Optional message'],
 ['sms','SMS QR','Prepare a text message to a phone number.','Phone number','+923001234567','Message'],
@@ -84,8 +84,8 @@ case'phone':return 'tel:'+v[0];
 case'whatsapp':return 'https://wa.me/'+v[0].replace(/\D/g,'')+(v[1]?'?text='+encodeURIComponent(v[1]):'');
 case'sms':return 'SMSTO:'+v[0]+':'+(v[1]||'');
 case'wifi':return 'WIFI:T:'+(v[2]||'WPA')+';S:'+wifiEscape(v[0])+';P:'+wifiEscape(v[1])+';;';
-case'vcard':return 'BEGIN:VCARD\nVERSION:3.0\nFN:'+v[0]+'\nTEL:'+ (v[1]||'')+'\nEMAIL:'+(v[2]||'')+'\nORG:'+(v[3]||'')+'\nEND:VCARD';
-case'business-card':return 'BEGIN:VCARD\nVERSION:3.0\nFN:'+v[0]+'\nTITLE:'+(v[1]||'')+'\nORG:'+(v[2]||'')+'\nTEL:'+(v[3]||'')+'\nEMAIL:'+(v[4]||'')+'\nURL:'+(v[5]||'')+'\nEND:VCARD';
+case'vcard':return 'BEGIN:VCARD\nVERSION:3.0\nFN:'+vcardEscape(v[0])+'\nTEL:'+vcardEscape(v[1])+'\nEMAIL:'+vcardEscape(v[2])+'\nORG:'+vcardEscape(v[3])+'\nEND:VCARD';
+case'business-card':return 'BEGIN:VCARD\nVERSION:3.0\nFN:'+vcardEscape(v[0])+'\nTITLE:'+vcardEscape(v[1])+'\nORG:'+vcardEscape(v[2])+'\nTEL:'+vcardEscape(v[3])+'\nEMAIL:'+vcardEscape(v[4])+'\nURL:'+vcardEscape(v[5])+'\nEND:VCARD';
 default:return v[0];
 }}
 function generate(){if(!selected){$('status').textContent='Please select a QR type first.';return}try{const data=payload();if(data.length>2800)throw Error('This content is too long for this QR generator. Use a shorter link or text.');if(!window.QRCode)throw Error('QR engine is still loading. Please wait a moment and try again.');$('qrcode').innerHTML='';new QRCode($('qrcode'),{text:data,width:240,height:240,colorDark:'#071820',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});lastPayload=data;$('download').disabled=false;$('status').textContent='QR code generated. Scan it with your phone to verify.';}catch(e){$('status').textContent=e.message}}
