@@ -18,8 +18,8 @@
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="./favicon.svg">
-<title>Doc Writer Lab | Free PDF & Document Tools</title>
-<meta name="description" content="Use 30 free online PDF and document tools to merge, split, compress, convert, edit text and calculate. Browser-based tools with no account required.">
+<title>Doc Writer Lab | Free PDF, Document & QR Code Tools</title>
+<meta name="description" content="Use 30 free PDF and document tools plus 30 QR code generators for websites, Wi-Fi, WhatsApp, contact cards, social media, payments and more.">
 <link rel="canonical" href="https://docwriterlab.site/">
 <link rel="sitemap" type="application/xml" href="https://docwriterlab.site/sitemap.xml">
 <meta name="robots" content="index,follow,max-image-preview:large">
@@ -94,6 +94,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .nav { display: flex; gap: 4px; flex-wrap: wrap; }
 .nav button { background: none; border: 0; padding: 8px 14px; border-radius: 99px; cursor: pointer; color: var(--muted); font-weight: 500; }
 .nav button:hover, .nav button[aria-current="true"] { color: var(--accent-fg); background: var(--accent); }
+.nav a { display:inline-block; text-decoration:none; padding:8px 14px; border-radius:99px; color:var(--muted); font-weight:500; }
+.nav a:hover { color:var(--accent-fg); background:var(--accent); }
 
 /* 3D buttons */
 .btn { --edge: color-mix(in srgb, var(--accent) 48%, #000); display: inline-block; text-decoration: none; background: var(--accent); color: var(--accent-fg); border: 0; border-radius: 14px; padding: 13px 24px; font-weight: 700; cursor: pointer; width: fit-content; box-shadow: 0 6px 0 var(--edge), 0 16px 24px var(--shadow); transform: translateY(0); }
@@ -314,6 +316,7 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     </button>
     <nav class="nav" aria-label="Main">
       <button data-go="home" data-nav="home">Tools</button>
+      <a href="/qr-tools.html" data-nav="qr">QR Tools</a>
       <button data-go="guides" data-nav="guides">Guides</button>
       <button data-go="about" data-nav="about">About</button>
       <button data-go="contact" data-nav="contact">Contact</button>
@@ -344,8 +347,22 @@ textarea { width: 100%; background: var(--bg2); border: 1px solid var(--line); b
     </section>
 
     <h2 class="sec-title">Pick a tool</h2>
-    <p class="sec-sub">30 free browser-based PDF and document utilities. Move your mouse over a card to tilt it.</p>
+    <p class="sec-sub">30 free browser-based PDF and document utilities. Explore the separate QR Tools section for 30 QR generators.</p>
     <div class="grid" id="tool-grid"></div>
+
+    <section class="seo-tools" id="qr-generator-section" aria-labelledby="qr-generator-title">
+      <h2 id="qr-generator-title" class="sec-title">30 Free QR Code Generators</h2>
+      <p class="sec-sub">Create QR codes for websites, WhatsApp, Wi-Fi, contact cards, social media, files, payments, menus and more.</p>
+      <div class="cta-row"><a class="btn" href="/qr-tools.html">Explore all 30 QR tools &rarr;</a></div>
+      <div class="seo-tool-links">
+        <a href="/qr-tools.html?type=website-url">Website URL QR</a>
+        <a href="/qr-tools.html?type=whatsapp">WhatsApp QR</a>
+        <a href="/qr-tools.html?type=wifi">Wi-Fi QR</a>
+        <a href="/qr-tools.html?type=vcard">Contact / vCard QR</a>
+        <a href="/qr-tools.html?type=instagram">Instagram QR</a>
+        <a href="/qr-tools.html?type=payment">Payment QR</a>
+      </div>
+    </section>
 
     
 <section class="seo-tools" aria-labelledby="seo-tools-title">
