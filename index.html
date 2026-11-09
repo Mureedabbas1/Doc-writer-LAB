@@ -188,19 +188,52 @@
 <p style="margin-top:14px"><a class="link" href="/guides/">Browse all PDF guides &rarr;</a></p></div>
 
 <section class="band"><h2>Got a PDF waiting? Start now.</h2><a class="btn" href="/merge-pdf/">Open Merge PDF</a></section>
-<!-- DOCWRITERLAB_ORGANIC_DOCUMENT_WORKFLOWS_V1 -->
-
+<!-- DOCWRITERLAB_ORGANIC_DOCUMENT_WORKFLOWS_V2 -->
 <section id="document-workflows" class="content-section" aria-labelledby="document-workflows-title">
  <div>
-  <h2 id="document-workflows-title">A practical document workflow, from draft to delivery</h2>
-  <p>Doc Writer Lab focuses on everyday document jobs: preparing a file, making a careful change, and checking the finished copy before it is shared.</p>
+  <h2 id="document-workflows-title">A practical guide to preparing, editing and sharing documents</h2>
+  <p>Doc Writer Lab is built for specific document jobs rather than replacing a full desktop publishing or PDF editing suite. The safest workflow is to decide what needs changing, use the smallest suitable operation, and inspect the exported file before sending it.</p>
   <div class="guide-grid">
-   <article class="guide-card"><h3>Prepare the document</h3><p>Combine related PDFs, split a long file into sections, or extract only the pages needed for a form or application.</p><p><a href="/merge-pdf/">Merge PDF</a> · <a href="/split-pdf/">Split PDF</a> · <a href="/extract-pdf-pages/">Extract pages</a></p></article>
-   <article class="guide-card"><h3>Make it readable</h3><p>Rotate scanned pages, add page numbers, or convert a supported PDF to text. Compare the output with the original, especially where tables and columns matter.</p><p><a href="/rotate-pdf/">Rotate PDF</a> · <a href="/add-page-numbers/">Add page numbers</a> · <a href="/pdf-to-text/">PDF to text</a></p></article>
-   <article class="guide-card"><h3>Finish and share responsibly</h3><p>Flatten supported form fields when a non-editable copy is needed, add a signature where appropriate, and keep an untouched backup of important documents.</p><p><a href="/flatten-pdf-forms/">Flatten PDF forms</a> · <a href="/sign-pdf/">Sign PDF</a> · <a href="/guides/">Read document guides</a></p></article>
+   <article class="guide-card"><h3>1. Combine or separate information</h3>
+    <p>Use Merge PDF when several related documents should become one file, such as a report with its appendices. Decide the page order first and check the first, middle and final pages after merging. Use Split PDF when a large document needs to become separate files, and use Extract Pages when only selected pages are required. Removing pages is different from extracting them: keep a copy of the original before either operation.</p>
+    <p><a href="/merge-pdf/">Merge PDF</a> · <a href="/split-pdf/">Split PDF</a> · <a href="/extract-pdf-pages/">Extract pages</a> · <a href="/remove-pdf-pages/">Remove pages</a></p>
+   </article>
+   <article class="guide-card"><h3>2. Improve page layout and navigation</h3>
+    <p>Scanned documents may arrive sideways or in an inconsistent order. Rotate pages to make them readable, reorder them to match the intended sequence, and add page numbers when readers need to refer to particular sections. Page numbers are visual labels; they do not repair missing pages or prove that a document is complete.</p>
+    <p><a href="/rotate-pdf/">Rotate pages</a> · <a href="/reorder-pdf-pages/">Reorder pages</a> · <a href="/add-page-numbers/">Add page numbers</a></p>
+   </article>
+   <article class="guide-card"><h3>3. Convert files with the right expectations</h3>
+    <p>PDF-to-image conversion is useful when a page needs to be placed in a presentation or shared as a picture. Image-to-PDF conversion is useful for combining photographed receipts or paper notes into one document. PDF-to-text works best when the PDF already contains selectable text; a scan made from photographs generally needs OCR, which this tool does not provide.</p>
+    <p><a href="/pdf-to-jpg/">PDF to JPG</a> · <a href="/jpg-to-pdf/">JPG to PDF</a> · <a href="/pdf-to-text/">PDF to text</a></p>
+   </article>
+   <article class="guide-card"><h3>4. Understand compression before using it</h3>
+    <p>There is always a trade-off between file size and fidelity when page images are reduced. The current Doc Writer Lab compression workflow rasterises pages, so text may no longer be selectable or searchable. Do not use it when searchable text, accessible reading order, vector diagrams or form fields must be preserved. Compare the result with the original at normal size and high zoom.</p>
+    <p><a href="/compress-pdf/">Compress PDF</a> · <a href="/compress-pdf-without-losing-quality/">Read the compression guide</a></p>
+   </article>
+   <article class="guide-card"><h3>5. Treat signatures, forms and redaction carefully</h3>
+    <p>A typed or drawn signature image is not the same as a certificate-backed digital signature. Flattening supported form fields can make their displayed values less editable, but it is not encryption and does not securely remove hidden information. Cropping a page is also not secure redaction. Use a dedicated redaction process when confidential text must be permanently removed, and follow the receiving organisation's requirements.</p>
+    <p><a href="/sign-pdf/">Add a visible signature</a> · <a href="/flatten-pdf-forms/">Flatten supported forms</a> · <a href="/crop-pdf/">Crop PDF pages</a></p>
+   </article>
+   <article class="guide-card"><h3>6. Create QR codes that people can actually use</h3>
+    <p>Choose the QR format that matches the action: a website URL for a landing page, Wi-Fi for network access, vCard for contact details, or a social profile for a public account. Keep enough contrast around the code, avoid making it too small, and scan-test the downloaded image with more than one phone before printing. Check payment or bank payloads with the relevant provider; a generated code is not proof that a payment destination is valid.</p>
+    <p><a href="/qr-tools.html">Browse the 30 QR code generators</a></p>
+   </article>
   </div>
-  <p>Formatting and text extraction are not perfect for every file. Scans, unusual fonts, complex tables and password-protected documents may need extra review. Learn how files are handled in our <a href="/privacy-policy.html">Privacy Policy</a> and read <a href="/about.html">about Doc Writer Lab</a>.</p>
- </div></section>
+  <h2>How to choose the right PDF operation</h2>
+  <p>Start with the outcome, not the tool name. If the pages are correct but in the wrong sequence, reorder them rather than converting the document. If you need only a few pages, extract those pages instead of sharing the complete file. If the file is too large, first check whether unnecessary pages or oversized images are responsible. Compression is not automatically the best first step.</p>
+  <ul>
+   <li><strong>Need one combined document?</strong> Merge the files, then confirm page order and total page count.</li>
+   <li><strong>Need a smaller section?</strong> Extract a page range and open the new file to confirm the selected pages.</li>
+   <li><strong>Need to share a page as a picture?</strong> Convert to JPG, then check that small text remains readable at the intended display size.</li>
+   <li><strong>Need searchable text from a paper scan?</strong> Use OCR software designed for scanned documents; ordinary text extraction cannot recognise text that exists only as pixels.</li>
+   <li><strong>Need to hide confidential information?</strong> Use a dedicated secure redaction tool and verify that the information cannot be selected, copied or recovered.</li>
+  </ul>
+  <h2>A quality check before you share</h2>
+  <p>Open the downloaded result in a PDF reader rather than relying only on the browser's success message. Check the page count, page sequence, orientation, small print, tables, links, annotations and form values that matter to your task. Try selecting text if searchability is important. Confirm the output filename and file size, and keep the untouched original until the recipient has accepted the new copy.</p>
+  <p>Large documents can use substantial memory in a browser, especially on older phones or computers. If a task fails, close unused tabs, try a smaller batch and make sure the browser is up to date. Never upload sensitive documents to a public support issue. Read our <a href="/privacy-policy.html">Privacy Policy</a>, <a href="/terms/">Terms</a> and <a href="/faq.html">FAQ</a> to understand the service, third-party resources and known limitations.</p>
+  <p>These tools are designed for everyday convenience, not legal, medical, financial or compliance certification. For important records, verify the result independently and use specialist software or professional advice where the document's purpose requires it.</p>
+ </div>
+</section>
 </div>
 </main>
 <!--FTR-->
