@@ -43,7 +43,7 @@
 <!--/HDR-->
 <main id="main" class="page container qr-page">
 <h1>Wi-Fi <span style="color:var(--accent)">QR Code Generator</span></h1>
-<p class="muted">Let guests connect to your Wi-Fi network by scanning a QR code. Select the matching generator, enter your information, create a scannable code and download it as a PNG. QR generation runs in your browser.</p>
+<p class="muted">Create a Wi-Fi QR code so guests can join without typing the network name and password. This page opens with the Wi-Fi fields selected; enter the network name (SSID), password and security type, then generate and download the PNG. QR generation runs in your browser.</p>
 <section aria-labelledby="qr-list"><h2 id="qr-list">Choose your QR generator</h2><div class="cards" id="cards"></div></section>
 <section class="panel" id="generator" aria-labelledby="generator-title">
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
@@ -108,7 +108,12 @@ $('year').textContent=new Date().getFullYear();buildCards();const initial=new UR
 })();
 </script>
 <!--FTR-->
-<footer class="ftr"><div class="container">
+<section class="content-section" aria-labelledby="wifi-qr-tips" style="max-width:900px;margin:0 auto 42px;padding:24px;border:1px solid var(--border,#e5e7eb);border-radius:18px;line-height:1.7">
+<h2 id="wifi-qr-tips">Set up and share a Wi-Fi QR code</h2>
+<p><strong>Use the exact network name.</strong> The SSID is case-sensitive, so match the spelling, spaces and capital letters shown in your router or device settings. Choose the security type used by the network; WPA is the usual choice for many modern home networks, while WEP is intended only for older equipment.</p>
+<p><strong>Protect the password.</strong> A Wi-Fi QR code contains the connection details in a form that compatible phones can read. It does not encrypt or hide the password from someone who scans it. Share the printed code only with people you want to give network access to, and change the Wi-Fi password if it has been shared too widely.</p>
+<p><strong>Test before printing.</strong> Generate the code, scan it with a phone that is not already connected to the network, and confirm that the device offers to join the intended Wi-Fi network. Keep the original network details private.</p>
+</section><footer class="ftr"><div class="container">
 <div class="ftr-grid">
 <div><a class="logo" href="/"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#e5322d"/><path d="M12 8h11l7 7v16a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z" fill="#fff"/><path d="M23 8v6a1 1 0 0 0 1 1h6" fill="#ffc9c4"/><path d="M15 24.5l3.3 3.3L25.5 20.5" fill="none" stroke="#e5322d" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Doc Writer<em>Lab</em></span></a><p>Free browser-based PDF, document, text and QR tools. No sign-up, and your files stay on your device.</p></div>
 <div><h4>PDF tools</h4><ul><li><a href="/merge-pdf/">Merge PDF</a></li><li><a href="/split-pdf/">Split PDF</a></li><li><a href="/compress-pdf/">Compress PDF</a></li><li><a href="/pdf-to-jpg/">PDF to JPG</a></li><li><a href="/jpg-to-pdf/">JPG to PDF</a></li><li><a href="/rotate-pdf/">Rotate PDF</a></li><li><a href="/sign-pdf/">Sign PDF</a></li><li><a href="/#tool-grid">All PDF tools</a></li></ul></div>
