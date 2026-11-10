@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Overview</h2><p>A menu QR code means a table card never goes out of date. You change the menu online, and the same printed code leads to the new version.</p></section>
+<section><h2>Data format</h2><p>The value stored is the address of your online menu, for example <code>https://example.com/menu</code>. It can be a web page or a PDF; a responsive page is easier to read on a phone than a full-size PDF.</p></section>
+<section><h2>Step by step</h2><ol><li>Publish your menu at a stable web address.</li><li>Paste it into <strong>Menu URL</strong>.</li><li>Click <strong>Generate QR Code</strong> and scan on a phone to see how it reads on a small screen.</li><li>Download the PNG and print it for tables, windows and takeaway bags.</li></ol></section>
+<section><h2>Good fits for this code</h2><ul><li>Table stands in a cafe.</li><li>Window sign for passers-by.</li><li>Takeaway bag stickers.</li><li>Hotel room service cards.</li></ul></section>
+<section><h2>Size, contrast and testing</h2><ul><li>Keep a few paper menus for guests with no phone, no signal or older phones.</li><li>Laminated table cards survive spills, but glossy lamination reflects ceiling lights, so choose a matte finish if you can.</li><li>Test the scan in the dimness of the dining room, not at a bright desk.</li><li>Write prices as text, not only inside pictures, so they can be read by screen readers and searched.</li></ul></section>
+<section><h2>Page or PDF?</h2><p>Many places link a PDF because it is easy, but a PDF menu is often the full-page print layout shrunk onto a phone, which forces pinching and scrolling. A simple responsive web page with sections, tap-friendly text and clear dish names reads far better. If a PDF is your only option, make it a single-column version designed for phones. Whichever you choose, put the date or season on the menu so staff know when it is out of date, and date-check allergen notes regularly.</p></section>
+<section><h2>Privacy note</h2><p>Do not link to a page that asks diners to enter personal details. Check that the menu host does not show unrelated ads. Allergy information should be correct and dated.</p></section>
+<section><h2>FAQ</h2><h3>Can I update the menu?</h3><p>Yes, change the page; the code stays the same.</p><h3>Should I link a PDF?</h3><p>A web page is better on phones.</p><h3>How big should the code be?</h3><p>About four centimetres on a table card.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

@@ -49,6 +49,19 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Overview</h2><p>A coupon QR code shares a discount as either a redemption link or the code itself. Which one fits depends on whether you have a web page that applies the discount.</p></section>
+<section><h2>Data format</h2><p>The value is stored as typed. A text coupon such as <code>MARF10</code> shows up as plain text for the customer to enter at checkout. A link such as <code>https://example.com/redeem?c=MARF10</code> opens a page that can apply it automatically. This page does not generate or validate coupons.</p></section>
+<section><h2>Step by step</h2><ol><li>Create the discount in your shop system first.</li><li>Type the code or link in <strong>Coupon code or redemption URL</strong>.</li><li>Click <strong>Generate QR Code</strong> and test the redemption.</li><li>Download PNG for flyers and receipts.</li></ol></section>
+<section><h2>Good fits for this code</h2><ul><li>Receipts with a next-visit offer.</li><li>Flyers.</li><li>Social posters.</li><li>Packaging inserts.</li></ul></section>
+<section><h2>Size, contrast and testing</h2><ul><li>Prefer a redemption link when you can, since the discount is applied for the customer and typing mistakes disappear.</li><li>Set an expiry date and a usage limit in your shop system, as the code image cannot enforce either.</li><li>Test the whole flow on a phone, from scanning to checkout, with a real order.</li><li>Print the plain code beneath the QR, so shoppers whose camera fails can still type it.</li></ul></section>
+<section><h2>Plain code or link</h2><p>This page stores whichever you type. A short code like <code>MARF10</code> appears on the scanner as text, which the customer then copies into your checkout. A redemption link opens a page that fills the code in automatically, which converts better and prevents typing errors. Neither option verifies the coupon. The discount rules, expiry and limits live in your shop system, so set those before you print, and think about how to track which flyer brought which customer by using a different code for each placement.</p></section>
+<section><h2>Tracking which placement works</h2><p>A useful habit is to give each print placement its own code word, such as one for the till receipt and another for the window poster. When customers redeem, your shop reports show which placement earned the sale. This needs a unique coupon per location in your system, and a separate QR image for each, which takes a minute per code on this page.</p></section>
+<section><h2>Privacy note</h2><p>Anyone who sees the code can use the discount, so do not print high-value offers without limits. Never encode private customer codes on shared materials.</p></section>
+<section><h2>FAQ</h2><h3>Can the code expire itself?</h3><p>No, only your shop system can enforce expiry.</p><h3>Is single-use possible?</h3><p>Only if your system supports unique codes.</p><h3>Does it apply automatically?</h3><p>Only with a redemption link.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

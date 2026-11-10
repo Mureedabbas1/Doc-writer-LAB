@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>What this QR code does</h2><p>Audio codes are a good fit for places where reading is awkward: a guided tour, a language lesson, a bedtime story, a voice greeting. Scanning starts the sound in the browser's player, and the audio file stays online where you uploaded it.</p></section>
+<section><h2>What gets encoded</h2><p>The QR contains the file address, like <code>https://example.com/audio.mp3</code>. MP3 is the safest format because every phone plays it in a browser. Formats such as WAV and FLAC may download instead, and some iPhones refuse odd codecs.</p></section>
+<section><h2>Making your code on this page</h2><ol><li>Upload your MP3 to your site or a host that allows direct linking, and copy that address.</li><li>Paste it into <strong>Public audio URL</strong>.</li><li>Choose <strong>Generate QR Code</strong> and scan the preview to hear it start.</li><li>Click <strong>Download PNG</strong> and add it to the page or sign.</li></ol></section>
+<section><h2>Where it helps</h2><ul><li>Self-guided walks with one clip per landmark.</li><li>Printed picture books with read-aloud tracks.</li><li>Language flashcards with pronunciation.</li><li>Product cards with a spoken message from the founder.</li></ul></section>
+<section><h2>Getting a reliable scan</h2><ul><li>Compress to 96 to 128 kbps mono for speech, which loads fast.</li><li>Normalise the volume so it does not blare.</li><li>Tell people to turn the sound on, since a phone may be silent.</li><li>Keep files short; long recordings are better split across codes.</li></ul></section>
+<section><h2>Preparing audio for phones</h2><p>Audio for a scan-and-listen experience should be small and clear. Speech sounds fine at 96 to 128 kbps in mono, which keeps a five-minute clip under about five megabytes. Trim silence at the start so that sound begins quickly after scanning, and level the volume so a quiet recording is not drowned out by a noisy room. On iPhones a browser will not start sound without a tap, so the page may show a play button; this is normal behaviour, not a fault with your code.</p></section>
+<section><h2>Safety and privacy</h2><p>Only publish recordings you own or have rights to, and do not put voice recordings of other people online without consent. Anyone with the address can download the file.</p></section>
+<section><h2>Common questions</h2><h3>Why does the file download instead of playing?</h3><p>Some browsers do that for unusual formats; use MP3.</p><h3>Can I link to a podcast episode?</h3><p>Yes, if you paste its public page or file link.</p><h3>Is there a length limit?</h3><p>No limit in the code, but short clips work best.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

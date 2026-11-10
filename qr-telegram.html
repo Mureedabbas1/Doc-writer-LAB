@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Before you start</h2><p>Telegram addresses are short and tidy, which gives you a small, easy-to-scan code. Use it to invite people into a channel, a group, or a direct chat with you.</p></section>
+<section><h2>The data inside the square</h2><p>Your link looks like <code>https://t.me/username</code> for a person or public channel, or <code>https://t.me/+AbCdEf</code> style invite links for private groups. The code stores it as pasted. Telegram opens in the app if present, otherwise a web preview.</p></section>
+<section><h2>How to use this generator</h2><ol><li>In Telegram, copy the invite or profile link from the group, channel or profile settings.</li><li>Paste it into <strong>Telegram URL</strong>.</li><li>Press <strong>Generate QR Code</strong>, scan and check the preview shows the right name.</li><li>Download the PNG and place it on your poster or screen.</li></ol></section>
+<section><h2>Real-world uses</h2><ul><li>Study groups inviting new students into a class channel.</li><li>A news or announcements channel at a conference.</li><li>A shop's order-support chat with a public username.</li><li>A hobby club's group, using join requests to keep out strangers.</li></ul></section>
+<section><h2>Practical tips for printing and testing</h2><ul><li>Public usernames give a cleaner code than invite links.</li><li>Set group join approval if you share a code widely.</li><li>Revoke and recreate the invite link if it spreads.</li><li>Short links produce larger modules.</li></ul></section>
+<section><h2>Public versus private links</h2><p>Telegram has two quite different kinds of link. A public username link such as <code>t.me/yourchannel</code> works for anyone and can be found by search. A private invite link, which looks like <code>t.me/+</code> followed by random characters, only exists to let people into a group you did not make public. Because invite links work like keys, put them on posters only if you also turn on admin approval for new members, and remember you can revoke and replace the link in the group's settings if it leaks.</p></section>
+<section><h2>Keep it safe</h2><p>Invite links into private groups act like keys: anyone with the picture can join. Use join requests and rotate the link if the poster is photographed and posted online.</p></section>
+<section><h2>Questions people ask</h2><h3>Can I change the invite later?</h3><p>If you revoke the link in Telegram, the old code stops working.</p><h3>Does a username expose my phone number?</h3><p>Not by default, but check your privacy settings.</p><h3>Will it work without Telegram?</h3><p>The browser preview works, with an option to open in the app.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

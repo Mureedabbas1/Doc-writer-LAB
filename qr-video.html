@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Overview</h2><p>A video QR code is a doorway from paper to moving pictures: a demonstration, a testimonial, a welcome message. The video is not stored in the square. The code holds a link, and the video plays from wherever that link points.</p></section>
+<section><h2>Data format</h2><p>Whatever address you paste is stored exactly, for example <code>https://example.com/video</code>. It can be a page that embeds a player, a hosted video file, or a link to a video service. A page with a built-in player is friendlier on phones than a raw file, because it adapts to the screen and shows controls.</p></section>
+<section><h2>Step by step</h2><ol><li>Upload the video to a host that offers a public link, and play that link in a private browser window to be sure no login is needed.</li><li>Paste the address into the <strong>Video URL</strong> field, replacing the sample address.</li><li>Click <strong>Generate QR Code</strong>, then scan with a phone on mobile data, not only on your Wi-Fi.</li><li>Press <strong>Download PNG</strong> and place it near the thing the video explains.</li></ol></section>
+<section><h2>Good fits for this code</h2><ul><li>An assembly video on the side of a flat-pack box.</li><li>A wedding programme linking to the ceremony recording.</li><li>A real-estate walkthrough on a for-sale sign.</li><li>A museum label with a restoration clip.</li></ul></section>
+<section><h2>Size, contrast and testing</h2><ul><li>Keep clips under three minutes; people scanning in a shop will not wait for ten.</li><li>Add captions, as many viewers watch without sound.</li><li>Large files burn mobile data, so use a host that streams.</li><li>If the video may be replaced later, link to a page you control and swap the video there.</li></ul></section>
+<section><h2>Link to a player page, not a bare file</h2><p>A direct link to a large video file may start a slow download or refuse to play on some phones. A page that embeds the video in a responsive player adapts to portrait screens, shows pause and volume controls, and can offer captions. Hosting services for video usually provide such a page automatically. Choose one with no ads at the start, because the first few seconds decide whether a person in a shop stays to watch.</p></section>
+<section><h2>Privacy note</h2><p>A public video link can be passed on by anyone. Do not link to footage showing private places or identifiable people without permission, and avoid links that grant access to a whole folder.</p></section>
+<section><h2>FAQ</h2><h3>Which video sites work?</h3><p>Any that give a public web address; the code does not care who hosts it.</p><h3>Will it use a lot of data?</h3><p>It depends on the video, so lower resolutions help.</p><h3>Can the video autoplay?</h3><p>That is up to the destination page and the phone, not the code.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

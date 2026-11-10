@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Before you start</h2><p>Drive links are long and awkward, which is where a scannable code earns its keep. You can hand out a document, a photo album or a whole folder without anybody typing a character.</p></section>
+<section><h2>The data inside the square</h2><p>The page stores the sharing link you paste, shaped like <code>https://drive.google.com/file/d/FILEID/view?usp=sharing</code>. Whether people can open it depends entirely on the sharing setting you choose inside Drive, not on the code.</p></section>
+<section><h2>How to use this generator</h2><ol><li>In Google Drive, right-click the file or folder and choose <strong>Share</strong>, then set General access to <strong>Anyone with the link</strong> and role to Viewer.</li><li>Copy the link and paste it into <strong>Shareable Drive URL</strong>.</li><li>Press <strong>Generate QR Code</strong>; scan with a phone that is signed out of your account.</li><li>Download the PNG and use it on your handout.</li></ol></section>
+<section><h2>Real-world uses</h2><ul><li>Class handouts and worksheets.</li><li>Event photos shared with attendees.</li><li>A volunteer rota sheet.</li><li>A portfolio folder for clients.</li></ul></section>
+<section><h2>Practical tips for printing and testing</h2><ul><li>Always choose Viewer, not Editor, unless you want edits from strangers.</li><li>Use a folder link for several files so updates appear automatically.</li><li>Test while signed out.</li><li>If you replace a file, upload a new version rather than a new file, so the link stays valid.</li></ul></section>
+<section><h2>Sharing settings explained</h2><p>Drive has three levels of access. Restricted means only named people can open the file, and anyone else sees a Request access screen. Anyone with the link means exactly that: whoever scans or receives the link can open it. Organisation-only applies to workspace accounts. A scannable code only makes sense with the middle setting, so confirm it before printing. After the event, switch the file back to restricted, because the printed code will still be out there afterwards.</p></section>
+<section><h2>Keep it safe</h2><p>Anyone with the link can open it, and a poster on a wall is effectively public. Never share folders that contain other files you did not mean to expose, and switch the sharing off when the event is over.</p></section>
+<section><h2>Questions people ask</h2><h3>Why do I see Request access?</h3><p>The sharing setting is still restricted. Change it in Drive.</p><h3>Does the QR give edit rights?</h3><p>Only if you chose Editor when sharing.</p><h3>Will it break if I move the file?</h3><p>Moving within your Drive keeps the link, but deleting breaks it.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

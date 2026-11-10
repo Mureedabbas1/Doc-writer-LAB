@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>What this QR code does</h2><p>A Wi-Fi QR code lets guests join your network by scanning instead of reading out a long password. The phone offers to connect the moment it reads the code.</p></section>
+<section><h2>What gets encoded</h2><p>The page encodes <code>WIFI:T:WPA;S:NetworkName;P:Password;;</code>. <code>T</code> is the security type, <code>S</code> the SSID and <code>P</code> the password. Characters such as backslash, semicolon, comma, colon and quotes are escaped for you, so tricky passwords still work. Hidden networks are not specifically supported by this form.</p></section>
+<section><h2>Making your code on this page</h2><ol><li>Enter the exact <strong>Network name (SSID)</strong>, matching capitals and spaces.</li><li>Type the <strong>Password</strong> and set <strong>Security</strong> (WPA is the default for modern routers).</li><li>Press <strong>Generate QR Code</strong> and scan it with a phone to check it offers to join.</li><li>Download the PNG and print it for the guest room, cafe or office.</li></ol></section>
+<section><h2>Where it helps</h2><ul><li>Guest rooms in a small hotel.</li><li>A cafe counter sign.</li><li>Home fridge magnet for visitors.</li><li>Co-working spaces for day passes.</li></ul></section>
+<section><h2>Getting a reliable scan</h2><ul><li>Copy SSID and password exactly: a lookalike letter will fail.</li><li>Use a separate guest network.</li><li>Print the network name beneath the code as a fallback.</li><li>Android 10+ and iOS 11+ read these codes with the camera.</li></ul></section>
+<section><h2>What the scanner shows</h2><p>After scanning, Android and iPhone both show a prompt with the network name and a Join button, so the guest never sees the password unless they dig into saved networks. The three security choices on this page are WPA/WPA2/WPA3, WEP and No password. Almost every router made in the last ten years should use the first. Pick No password for an open network and leave the password box empty. The password box is masked while you type, so check your entry by scanning rather than by reading the screen.</p></section>
+<section><h2>Safety and privacy</h2><p>The password sits in the code in readable form, so anyone who photographs the sign can join. Use a guest network, change the password if the sign leaves the building, and never use the password you reuse elsewhere.</p></section>
+<section><h2>Common questions</h2><h3>Is my password uploaded?</h3><p>No, the code is made in your browser.</p><h3>Does it work for open networks?</h3><p>Choose the no-password security type and leave the password empty.</p><h3>What if I change the password?</h3><p>The old code stops working; generate and reprint.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

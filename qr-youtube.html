@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Before you start</h2><p>YouTube links work well in print because a channel or video is hard to type. The code can go to a channel home, a single video, or a playlist, depending on what link you paste.</p></section>
+<section><h2>The data inside the square</h2><p>The content is a normal web address, such as <code>https://youtube.com/@yourchannel</code> or a watch link like <code>https://youtube.com/watch?v=VIDEOID</code>. A timestamp parameter such as <code>&amp;t=90s</code> starts the video at that point. The generator stores it as typed.</p></section>
+<section><h2>How to use this generator</h2><ol><li>Copy the link of the channel, video or playlist from YouTube's Share button.</li><li>Paste it into the <strong>YouTube URL</strong> field, replacing the sample address.</li><li>Click <strong>Generate QR Code</strong> and scan to check the video plays or the channel opens.</li><li>Download the PNG and add it to your handout or slide.</li></ol></section>
+<section><h2>Real-world uses</h2><ul><li>Recipe cards linking to the demonstration video.</li><li>Museum labels with a short explainer clip.</li><li>Teachers' worksheets pointing to a lesson playlist.</li><li>Product manuals that open the setup walkthrough.</li></ul></section>
+<section><h2>Practical tips for printing and testing</h2><ul><li>A playlist link is better than a single video if you expect to add more clips later.</li><li>Use the timestamp trick to skip an intro on instructional videos.</li><li>Link to a video you own; third-party videos may be removed.</li><li>Large sign codes should be tested from the intended distance.</li></ul></section>
+<section><h2>Choosing between channel, video and playlist</h2><p>Each kind of link suits a different purpose. A channel link is best for a business card or shop sign, when you want people to browse. A single video link works for a manual or a recipe, where one clip answers one question. A playlist link is ideal for a course or a series because new videos you add to the list appear without changing the printed code. Remember that the app may resume where the person left off rather than from the start.</p></section>
+<section><h2>Keep it safe</h2><p>Do not put unlisted video links in public places unless you are fine with everyone who scans watching them, since unlisted only means not searchable. Be careful with links that autoplay for children.</p></section>
+<section><h2>Questions people ask</h2><h3>Does it open the YouTube app?</h3><p>On most phones, yes, when the app is installed.</p><h3>Can I link to a live stream?</h3><p>Yes, but the link will show the stream only while live or its recording afterwards.</p><h3>Do I need to shorten the youtu.be link?</h3><p>No, both forms work.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

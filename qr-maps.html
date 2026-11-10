@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Overview</h2><p>A map QR code takes people to a specific place on Google Maps, so they can start directions from wherever they are. It works nicely for venues that are hard to find.</p></section>
+<section><h2>Data format</h2><p>The page stores whatever Maps link you paste, for example <code>https://maps.google.com/?q=Lahore</code> or a share link copied from the Maps app. Nothing is added, so the QR is just that URL. Short links from Maps' Share button make for simpler codes.</p></section>
+<section><h2>Step by step</h2><ol><li>Open the place in Google Maps, tap <strong>Share</strong> and copy the link.</li><li>Paste it into <strong>Maps URL or location link</strong> on this page.</li><li>Click <strong>Generate QR Code</strong> and scan: the map should open on the right pin.</li><li>Download the PNG and add it to the invitation or sign.</li></ol></section>
+<section><h2>Good fits for this code</h2><ul><li>Wedding invitations pointing to a hard-to-find hall.</li><li>Shop signs for the branch address.</li><li>Real-estate flyers for viewings.</li><li>Trail head posters to the parking area.</li></ul></section>
+<section><h2>Size, contrast and testing</h2><ul><li>Prefer the short share link over a long URL with coordinates.</li><li>Check the pin is on the entrance, not the middle of the building.</li><li>Test on iOS, where Apple Maps may offer to open instead.</li><li>Add the printed address beneath the code for people without a scanner.</li></ul></section>
+<section><h2>Picking the right link</h2><p>Google Maps gives you several kinds of link, and they behave differently. A search link such as <code>?q=Lahore</code> drops a pin on the best match for the words, which can be wrong if the name is common. A link from the Share button on a specific place points at that exact listing. If your venue has no listing, drop a pin on the map, share that pin, and the code will open at precise coordinates. Whichever you choose, scan the finished code on a phone away from the venue so the app has to work out directions from a distance, as your guests will.</p></section>
+<section><h2>Privacy note</h2><p>Do not encode your home address on public material. Location links reveal exactly where a pin sits, so for private events share the code only with guests.</p></section>
+<section><h2>FAQ</h2><h3>Does it work offline?</h3><p>The link needs internet to load the map.</p><h3>Can I set a travel mode?</h3><p>Only if the pasted link includes it.</p><h3>Will it open Apple Maps?</h3><p>On iPhones the link may offer Apple Maps or Google Maps depending on settings.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

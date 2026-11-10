@@ -49,6 +49,19 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Before you start</h2><p>An image QR code connects print to a picture: a large floor plan, a high-resolution photo, a diagram too big for the page. The code does not contain the picture, only the address where it is hosted.</p></section>
+<section><h2>The data inside the square</h2><p>The value stored is the direct image address, for example <code>https://example.com/images/floorplan.jpg</code>. Use a link that ends in the file itself, not a page that merely contains the image.</p></section>
+<section><h2>How to use this generator</h2><ol><li>Upload the image to your site and copy the direct file link.</li><li>Paste it into <strong>Public image URL</strong>, replacing the sample.</li><li>Press <strong>Generate QR Code</strong> and scan to confirm the image opens by itself.</li><li><strong>Download PNG</strong> and place it beside the printed material.</li></ol></section>
+<section><h2>Real-world uses</h2><ul><li>Floor plans on property flyers.</li><li>Large infographics on posters.</li><li>Photo proofs for clients.</li><li>Diagrams in printed manuals.</li></ul></section>
+<section><h2>Practical tips for printing and testing</h2><ul><li>Resize images to a sensible width such as 1600 pixels.</li><li>JPG is smaller than PNG for photos.</li><li>Phones can zoom in, so supply the full resolution.</li><li>Test loading on mobile data.</li></ul></section>
+<section><h2>Direct link versus page link</h2><p>A direct link ends in the picture file, for example .jpg or .png, and opens the image full screen. A page link opens a web page that merely contains the image, along with menus and perhaps ads. The two feel very different on a phone. Test yours by scanning the finished code and checking that the picture fills the screen, can be pinch-zoomed, and does not need a login. If it opens a gallery or a sign-in page instead, you pasted a page link.</p></section>
+<section><h2>File size and format</h2><p>Phones fetch the picture over mobile data, so a twelve megabyte original is a poor choice for a code on a shop wall. Resize photographs to about 1600 pixels on the long side and save them as JPG, which usually cuts the size to a few hundred kilobytes. Keep PNG for diagrams, screenshots and line art with sharp text. If the image is a plan with small labels, check that the text is still readable when zoomed on a phone.</p></section>
+<section><h2>Keep it safe</h2><p>Images at public links can be copied freely. Do not use for photos of people who have not agreed, ID documents or private screenshots.</p></section>
+<section><h2>Questions people ask</h2><h3>Which formats work?</h3><p>Anything a phone browser can display, such as JPG, PNG, WebP.</p><h3>Can I use a cloud drive link?</h3><p>Only if it is a public, direct link.</p><h3>Will it download the image?</h3><p>It opens it; saving is up to the viewer.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

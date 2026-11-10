@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>What this QR code does</h2><p>Many banks and wallets publish their own payment QR format. This page does not invent one: it encodes the exact payload text your bank gives you, so the result can be read by that bank's app.</p></section>
+<section><h2>What gets encoded</h2><p>Whatever you paste into the box is stored verbatim, including line breaks. Formats differ by country: some use a structured string supplied by the bank, others a payment URI. If you type your account number into the box as plain text, the scanner will show plain text and no bank app will recognise it.</p></section>
+<section><h2>Making your code on this page</h2><ol><li>Ask your bank or payment app for the QR payload text, or the 'copy payment string' option.</li><li>Paste it exactly into <strong>Bank/payment provider payload</strong>, without adding spaces.</li><li>Press <strong>Generate QR Code</strong> and scan it with the bank app to confirm the details shown are right.</li><li><strong>Download PNG</strong> only if the check succeeded.</li></ol></section>
+<section><h2>Where it helps</h2><ul><li>A freelancer receiving bank transfers.</li><li>A tutor collecting fees.</li><li>A club treasurer for membership dues.</li><li>A small shop's counter sign.</li></ul></section>
+<section><h2>Getting a reliable scan</h2><ul><li>If your bank already offers a QR image, use theirs instead.</li><li>Do not edit the payload by hand, even one character changes the checksum.</li><li>Print at least four centimetres wide.</li><li>Re-test after any bank app update.</li></ul></section>
+<section><h2>Why this form has no account number field</h2><p>You will notice that this page has no separate boxes for account number, sort code or IBAN. That is intentional. Banks around the world use different payment QR standards, and a hand-made string that looks plausible may still fail, or worse, show the wrong details. By taking the bank's own payload instead, the page leaves the structure and any checksum untouched. If your bank has no QR option, share your details by a private message rather than a public sign.</p></section>
+<section><h2>Safety and privacy</h2><p>Account details are sensitive. A code containing an account number lets anyone read it by scanning, and a photo online reveals it permanently. Share it only with the people who need to pay you, never on public posters unless this is a business account meant for it, and never include a password or PIN.</p></section>
+<section><h2>Common questions</h2><h3>Is my account number uploaded?</h3><p>No. The code is created in your browser.</p><h3>Can I use IBAN only?</h3><p>Plain text works but is not payable by scanning; use the bank's format.</p><h3>Is this a bank-approved code?</h3><p>No. This is a generic tool; check with your bank.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>What this QR code does</h2><p>A PDF code puts a document in someone's hand without a paper copy. The important thing to understand is that the PDF is not inside the square; the code contains the web address where the file lives.</p></section>
+<section><h2>What gets encoded</h2><p>The stored value is the direct link, such as <code>https://example.com/files/brochure.pdf</code>. The file must already be online and publicly reachable. Scanning opens the link; the phone's browser either displays or downloads the PDF depending on the device.</p></section>
+<section><h2>Making your code on this page</h2><ol><li>Upload your PDF to your website or a file host and copy its public link.</li><li>Open that link in a private window to confirm it loads without logging in.</li><li>Paste the link into <strong>Public PDF URL</strong> and press <strong>Generate QR Code</strong>.</li><li>Scan, check it displays, then <strong>Download PNG</strong>.</li></ol></section>
+<section><h2>Where it helps</h2><ul><li>Product manuals on appliances.</li><li>Menus or price lists on a window.</li><li>Conference programmes.</li><li>Course syllabi.</li></ul></section>
+<section><h2>Getting a reliable scan</h2><ul><li>Compress the PDF so it opens quickly on mobile data. This site has a compress tool for that.</li><li>Name the file sensibly, because it appears in downloads.</li><li>If you update the PDF, keep the same file name and address so the code remains valid.</li><li>Test on iOS and Android as they handle PDFs differently.</li></ul></section>
+<section><h2>Preparing the file</h2><p>Before you generate the code, prepare the PDF itself. Reduce its size so it opens in a second or two on a weak connection; a ten megabyte brochure frustrates people in a car park. Make sure text is real text rather than scanned images so that people can zoom and select it. Give the file a clear name, because it will appear in the phone's downloads. Finally decide whether the PDF will ever change. If so, keep the file name and web address fixed and just replace the file on your server.</p></section>
+<section><h2>Safety and privacy</h2><p>Anyone with the link can read the file, and search engines may find it. Never publish PDFs containing personal data, contracts or invoices this way.</p></section>
+<section><h2>Common questions</h2><h3>Does the PDF go through this site?</h3><p>No. Your file stays where you hosted it.</p><h3>What size is OK?</h3><p>Smaller than a few megabytes loads well on mobile.</p><h3>Can I password protect it?</h3><p>The link would still be public; a password prompt depends on the host.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Overview</h2><p>If you run several accounts, one code for each is clumsy. This type points to a single link page, often called a link-in-bio page, where all your profiles are listed together.</p></section>
+<section><h2>Data format</h2><p>The code stores one web address, such as <code>https://example.com/links</code>. This generator does not build the link page itself; you need a page of your own or one from a link-in-bio service. The QR code only carries its address.</p></section>
+<section><h2>Step by step</h2><ol><li>Create or choose a page listing your accounts and note its address.</li><li>Paste that address into <strong>Your social links page URL</strong>.</li><li>Generate the QR code and scan to check every link on the page works on mobile.</li><li>Download the PNG and print it on a business card or banner.</li></ol></section>
+<section><h2>Good fits for this code</h2><ul><li>A creator's business card.</li><li>A band's gig poster with streaming, video and ticket links.</li><li>A small shop's sticker for all channels.</li><li>Conference speaker slides.</li></ul></section>
+<section><h2>Size, contrast and testing</h2><ul><li>Keep the list short and ordered by what you want people to see first.</li><li>Check the page loads fast on mobile data.</li><li>Because the page can change, the printed code never needs reprinting.</li><li>Avoid long query strings.</li></ul></section>
+<section><h2>Setting up the page behind the code</h2><p>The code is only as useful as the page it opens. A good links page loads quickly on mobile data, has big tap targets, and fits the most important links on the first screen. Put the account you most want new followers on at the top and keep the list to five or six entries. Because you can change the page whenever you like, this is the one social code you will never have to reprint when you open a new account.</p></section>
+<section><h2>Privacy note</h2><p>Everything on that page is public, so list only accounts you are happy to be found on. Avoid linking personal accounts alongside professional ones.</p></section>
+<section><h2>FAQ</h2><h3>Can this site host the link page?</h3><p>No, it only creates the code.</p><h3>Why use this over separate codes?</h3><p>One code is simpler and the page can be edited later.</p><h3>Does the page need HTTPS?</h3><p>Yes, use https so browsers do not warn visitors.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

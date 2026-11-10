@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Before you start</h2><p>Event codes come in two forms: a link to an event page for promotion, and a link that identifies an individual ticket for entry. This page can make both, but it only encodes the address; it cannot verify tickets, count entries or stop duplicates.</p></section>
+<section><h2>The data inside the square</h2><p>The stored value is a web address, like <code>https://example.com/ticket</code>. For a ticket, the address usually contains a unique code, such as <code>/ticket/8F3K29</code>, which your own system checks at the door.</p></section>
+<section><h2>How to use this generator</h2><ol><li>Decide whether you need one code for the event or a different one for each guest.</li><li>Paste the address into <strong>Event or ticket URL</strong>.</li><li>Click <strong>Generate QR Code</strong> and scan with a phone.</li><li>Download the PNG; for many tickets, repeat for each unique link.</li></ol></section>
+<section><h2>Real-world uses</h2><ul><li>Promotion posters linking to registration.</li><li>Personal invitations with a unique link.</li><li>Workshop sign-in sheets.</li><li>School concert programmes.</li></ul></section>
+<section><h2>Practical tips for printing and testing</h2><ul><li>Make ticket links unguessable. A link ending in a long random string is safe, while one ending in 101, 102, 103 invites people to try their luck.</li><li>Print or display tickets with high contrast. A phone screen turned down to low brightness is a common cause of failed entry scans.</li><li>Test scanning under the actual door lighting, including bright sun behind the door staff, before the event opens.</li><li>Keep a printed guest list for failures, so one bad scan never blocks a guest.</li></ul></section>
+<section><h2>Event page or individual ticket?</h2><p>For promotion, one code for the whole event is enough, and it should lead to a page about the venue, the time and how to register. For entry, every guest needs a different address, because a shared code cannot tell who has arrived. This page produces the image for either, but it does not issue the unique links. Your ticketing system, spreadsheet or form tool must create them, and your door staff must have a way to check each one against that list as people arrive.</p></section>
+<section><h2>Keep it safe</h2><p>A ticket code is only as secure as your checking system. If the same image is copied, many people can use it. Do not include personal details in the link, and use a back-end that marks a ticket used after the first entry.</p></section>
+<section><h2>Questions people ask</h2><h3>Does this validate tickets?</h3><p>No, it only creates the image.</p><h3>Can I make many codes at once?</h3><p>One at a time on this page.</p><h3>Do tickets expire?</h3><p>Only if your system enforces it.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

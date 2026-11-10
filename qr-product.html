@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>What this QR code does</h2><p>A product QR code tells a customer more than the label can: ingredients, a manual, a reorder page. The code carries a web address or a short identifier such as a SKU.</p></section>
+<section><h2>What gets encoded</h2><p>The stored value is whatever you paste, such as <code>https://example.com/product/123</code> or a plain code like <code>SKU-4471</code>. A URL opens in the browser; a plain SKU shows as text, useful for staff scanning but not for customers.</p></section>
+<section><h2>Making your code on this page</h2><ol><li>Choose the product page or identifier.</li><li>Enter it into <strong>Product URL or SKU</strong>.</li><li>Press <strong>Generate QR Code</strong> and scan to see what a customer would.</li><li>Download PNG and place it on the packaging file.</li></ol></section>
+<section><h2>Where it helps</h2><ul><li>Packaging linking to care instructions.</li><li>Shelf labels for stock lookup.</li><li>Spare-parts reorder pages.</li><li>Warranty registration.</li></ul></section>
+<section><h2>Getting a reliable scan</h2><ul><li>Give each product its own page, so a scan of a blender never lands on a page about a kettle.</li><li>Keep the code off folds, seams and curved edges where it will distort.</li><li>Leave a plain border around the square, on coloured packaging too.</li><li>Check contrast on coloured or textured stock: dark navy on a pale surface scans well, pastel on pastel does not.</li></ul></section>
+<section><h2>URL or SKU?</h2><p>A URL suits customers: they scan, and a page with instructions, ingredients or a reorder button appears. A bare SKU suits internal use, such as a warehouse worker scanning a shelf label, where the text goes into a search box or stock system. This page treats both identically, storing the text as typed, so decide which audience you are designing for. Do not rely on the code as a retail barcode: tills read barcodes and not QR codes unless they are set up for it.</p></section>
+<section><h2>Safety and privacy</h2><p>Do not include cost prices or internal stock details in the link. Customers can follow it and read whatever the page shows.</p></section>
+<section><h2>Common questions</h2><h3>Is it a barcode?</h3><p>No. A QR code is different from a retail barcode and does not replace it at tills.</p><h3>Can it carry stock counts?</h3><p>No, only static text.</p><h3>Can I use the same code for several variants?</h3><p>Yes, if the page lets people choose.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){

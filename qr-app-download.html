@@ -49,6 +49,18 @@
 <div><h2 id="generator-title">Create your QR code</h2><p class="muted" id="generator-desc">Select any QR type above to begin.</p><div class="fields" id="fields"></div><div class="actions"><button class="btn" id="generate">Generate QR Code</button><button class="btn secondary" id="clear" type="button">Clear</button></div><p class="notice" id="status" aria-live="polite">Choose a QR type to show its fields.</p></div>
 <div><h2>QR Preview</h2><div class="result" id="qrcode"><p>Your generated QR code will appear here.</p></div><div class="actions"><button class="btn" id="download" disabled>Download PNG</button></div><p class="notice">Scan-test your QR before printing or sharing. Payment QR compatibility depends on the bank or payment provider.</p></div>
 </section>
+<!--QRGUIDE-->
+<div class="prose-wrap qr-guide" id="guide">
+<section><h2>Before you start</h2><p>App stores are where people expect to install apps, so this code links straight to your store listing. It saves users from searching for a name that may match several apps.</p></section>
+<section><h2>The data inside the square</h2><p>The code stores the store link as pasted: an Apple page such as <code>https://apps.apple.com/app/idNUMBER</code> or a Google Play one like <code>https://play.google.com/store/apps/details?id=com.example.app</code>. One link goes to one store, so a code for both stores needs a landing page.</p></section>
+<section><h2>How to use this generator</h2><ol><li>Open your app's store page and copy the web address.</li><li>Paste it into <strong>App Store / Play Store URL</strong>.</li><li>Click <strong>Generate QR Code</strong> and scan with the matching phone.</li><li>Download PNG and place it in your ads.</li></ol></section>
+<section><h2>Real-world uses</h2><ul><li>Printed ads.</li><li>Event booths.</li><li>Packaging for connected devices.</li><li>Email signatures.</li></ul></section>
+<section><h2>Practical tips for printing and testing</h2><ul><li>If you need both iPhone and Android, link to a small landing page that detects the phone, or print two clearly labelled codes.</li><li>Label the code with the store name so people know what will open.</li><li>Confirm the store listing is published and visible in the countries where you will print.</li><li>Keep dark modules on a light background for the best scanning.</li></ul></section>
+<section><h2>Landing page for both platforms</h2><p>A single store link only suits one system: Apple links open on iPhones, and Google Play links open on Android, while a desktop browser just shows a web listing. If your poster will be seen by both groups, build a tiny page on your own site that checks the visitor's device and forwards them to the right store. Then encode that page's address here. The advantage is that you can change store links later, for example when a new app version moves to a new listing, without reprinting.</p></section>
+<section><h2>Keep it safe</h2><p>Only link to official stores. A typo could send people to a different app. Check the developer name after scanning.</p></section>
+<section><h2>Questions people ask</h2><h3>Can one code serve both stores?</h3><p>Not with this static link; use a page that detects the phone.</p><h3>Does it install automatically?</h3><p>No, the person must tap Install.</p><h3>What if the app is removed?</h3><p>The code will show an error.</p></section>
+</div>
+<!--/QRGUIDE-->
 <span id="year" hidden></span></main>
 <script>
 (function(){
