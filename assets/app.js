@@ -8,9 +8,9 @@ var META = {
   number:['edit','/add-page-numbers/'], watermark:['edit','/add-pdf-watermark/'], crop:['edit','/crop-pdf/'], addtext:['edit','/add-text-to-pdf/'],
   sign:['security','/sign-pdf/'], flatten:['security','/flatten-pdf-forms/'],
   words:['text','/word-counter/'], 'case':['text','/case-converter/'],
-  charcount:['text','/tool.html?tool=charcount'], sentencecount:['text','/tool.html?tool=sentencecount'], linecount:['text','/tool.html?tool=linecount'],
-  cleantext:['text','/tool.html?tool=cleantext'], dedupe:['text','/tool.html?tool=dedupe'], sortlines:['text','/tool.html?tool=sortlines'],
-  reverse:['text','/tool.html?tool=reverse'], findreplace:['text','/tool.html?tool=findreplace'], slug:['text','/tool.html?tool=slug'], lorem:['text','/tool.html?tool=lorem'],
+  charcount:['text','/character-counter/'], sentencecount:['text','/sentence-counter/'], linecount:['text','/line-counter/'],
+  cleantext:['text','/text-cleaner/'], dedupe:['text','/remove-duplicate-lines/'], sortlines:['text','/sort-lines/'],
+  reverse:['text','/reverse-text/'], findreplace:['text','/find-and-replace-text/'], slug:['text','/url-slug-generator/'], lorem:['text','/lorem-ipsum-generator/'],
   percent:['calc','/percentage-calculator/'], age:['calc','/age-calculator/']
 };
 var ORDER = ['merge','split','compress','pdf2jpg','jpg2pdf','pdf2text','rotate','remove','extract','organize','number','watermark','crop','addtext','sign','flatten','words','case','charcount','sentencecount','linecount','cleantext','dedupe','sortlines','reverse','findreplace','slug','lorem','percent','age'];
