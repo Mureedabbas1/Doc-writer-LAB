@@ -183,7 +183,7 @@ var ICONS = {
     box.querySelector('.d-note').textContent = note || (name + '  ·  ' + fmt(blob.size));
     var a = mk('a', 'btn xl dl', SVG_DL + '<span></span>'); a.href = url; a.download = name; a.querySelector('span').textContent = 'Download ' + name;
     var again = mk('button', 'btn alt', 'Start over'); again.type = 'button';
-    again.onclick = function () { restart(host); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+    again.onclick = function () { restart(host); window.scrollTo({ top: 0, behavior: 'auto' }); };
     var row = mk('div', 'row'); row.style.justifyContent = 'center'; row.appendChild(again);
     box.appendChild(a); box.appendChild(row);
     if (currentTool) { var nx = mk('div', 'next', suggest(currentTool.id)); if (nx.children.length) { box.appendChild(mk('p', 'tag', 'Keep going with')); box.appendChild(nx); } }
