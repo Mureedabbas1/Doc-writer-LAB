@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Doc Writer Lab",
+  "short_name": "DocWriter",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#06242b",
+  "theme_color": "#06242b",
+  "description": "Doc Writer Lab web app",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
