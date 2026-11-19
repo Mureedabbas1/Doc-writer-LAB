@@ -343,3 +343,35 @@ img,video,canvas{max-width:100%}
   .tcard{grid-template-columns:42px minmax(0,1fr);column-gap:12px;padding:12px 12px}
   .tcard .tile{width:42px;height:42px}
 }
+
+
+/* ---------- App-like mobile layout (2026-11-19) ---------- */
+@media(max-width:700px){
+  html{scroll-padding-top:78px}
+  body{font-size:15px;overflow-x:hidden}
+  .container{width:calc(100% - 28px);max-width:100%}
+  .nav{position:sticky;top:5px;z-index:900;min-height:58px;padding:9px 12px;border-radius:17px;gap:9px;flex-wrap:wrap}
+  .logo{max-width:42px}
+  .hero-home,.hero{grid-template-columns:minmax(0,1fr);gap:18px;padding-top:28px;padding-bottom:24px}
+  .hero-home h1,.hero h1{font-size:clamp(34px,9vw,48px);line-height:1.08}
+  .hero-home p,.hero p{font-size:15px;line-height:1.65}
+  .grid,.cards,.seo-tools,.guide-grid,.ws-grid,.fgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .tcard,.guide-card,.fcard,.card{min-width:0;border-radius:16px}
+  .tcard h3,.guide-card h3,.fcard h3{font-size:14px;line-height:1.35}
+  .content-section,.tool-body{padding:18px 14px}
+  .panel-main{width:100%;min-width:0}
+  .search{width:100%;min-width:0}
+  input:not([type=checkbox]):not([type=radio]):not([type=range]):not([type=file]),select,textarea{font-size:16px}
+  button,.nav-btn,[role=button],input[type=submit]{min-height:44px}
+  .ftr-grid{grid-template-columns:1fr 1fr;gap:16px}
+  .ftr-grid a{min-height:44px;display:flex;align-items:center}
+  main{min-width:0}
+}
+@media(max-width:390px){
+  .grid,.cards,.seo-tools,.guide-grid,.ws-grid,.fgrid{grid-template-columns:minmax(0,1fr)}
+  .nav{gap:6px;padding:8px}
+  .hero-home h1,.hero h1{font-size:34px}
+}
+@media(display-mode:standalone){
+  body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+}
