@@ -72,6 +72,20 @@
 <link rel="stylesheet" href="/assets/style.css?v=20261108a">
 <style id="dwl-welcome-styles">#dwl-welcome{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;overflow:hidden;background:#24100f;color:#fff;opacity:1;visibility:visible;transition:opacity .65s ease,visibility .65s ease}#dwl-welcome:before{content:"";position:absolute;inset:-8px;background:url('./backgrnnd.png') center/cover no-repeat;filter:blur(2px) brightness(.57);transform:scale(1.025)}#dwl-welcome:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(35,8,8,.66),rgba(75,17,17,.28),rgba(25,9,9,.68))}#dwl-welcome .dwl-welcome-content{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:28px;animation:dwlWelcomeIn .9s ease both}#dwl-welcome .dwl-mark{width:clamp(100px,15vw,148px);height:auto;margin-bottom:22px;filter:drop-shadow(0 0 24px rgba(229,50,45,.42))}#dwl-welcome h1{font:800 clamp(2rem,5vw,3.5rem)/1.1 Inter,system-ui,sans-serif;letter-spacing:-1px;margin:0 0 12px;color:#fff;text-shadow:0 3px 24px #0008}#dwl-welcome h1 span{color:#ff7770}#dwl-welcome p{font:700 clamp(.78rem,1.7vw,1rem)/1.5 Inter,system-ui,sans-serif;letter-spacing:.18em;color:#ffe5e3;text-transform:uppercase;text-shadow:0 2px 12px #000}#dwl-welcome.is-hidden{opacity:0;visibility:hidden;pointer-events:none}@keyframes dwlWelcomeIn{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}@media(prefers-reduced-motion:reduce){#dwl-welcome,#dwl-welcome .dwl-welcome-content{transition:none;animation:none}}@media(max-width:700px){#dwl-welcome:before{background-image:url('/welcome-bg-mobile.jpg')}#dwl-welcome .dwl-welcome-content{width:100%;box-sizing:border-box;padding:24px 20px}#dwl-welcome p{letter-spacing:.1em;font-size:.78rem;max-width:300px}}@media(max-width:360px){#dwl-welcome h1{font-size:1.8rem}#dwl-welcome p{letter-spacing:.06em;font-size:.72rem}}</style>
 <style id="age-promo-style">.age-promo{margin:0 auto 30px;width:min(1160px,calc(100% - 40px));box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:clamp(18px,3vw,26px) clamp(20px,4vw,34px);border:1px solid rgba(32,145,126,.25);border-radius:18px;background:linear-gradient(110deg,#effaf7,#f1f7ff);box-shadow:0 14px 36px rgba(24,92,91,.09)}.age-promo-copy{display:flex;align-items:center;gap:16px}.age-promo-icon{width:52px;height:52px;flex:0 0 52px;display:grid;place-items:center;border-radius:15px;background:#d9f2eb;font-size:27px}.age-promo h2{margin:0 0 5px;font-size:clamp(18px,2.6vw,23px);color:#173e42}.age-promo p{margin:0;color:#587174;font-size:14px;line-height:1.55}.age-promo a{flex:0 0 auto;text-decoration:none;border-radius:10px;padding:13px 19px;background:linear-gradient(110deg,#167f72,#2866b4);color:#fff;font-weight:800}@media(max-width:620px){.age-promo{align-items:stretch;flex-direction:column}.age-promo a{text-align:center}}</style>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="DocWriter">
+<meta name="theme-color" content="#06242b">
+<style id="pwa-install-ui">
+#pwa-install-cta{position:fixed;z-index:2147483000;left:18px;bottom:18px;display:flex;align-items:center;gap:10px;padding:11px 16px;border:1px solid #3ef0cf;border-radius:999px;background:#06242b;color:#effcfb;box-shadow:0 8px 28px rgba(0,0,0,.22);font:700 13px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.01em;cursor:pointer;transition:transform .2s,box-shadow .2s}
+#pwa-install-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+#pwa-install-cta .pwa-install-mark{width:9px;height:9px;border-radius:50%;background:#3ef0cf;box-shadow:0 0 12px #3ef0cf}
+#pwa-install-cta[hidden]{display:none!important}
+@media(max-width:640px){#pwa-install-cta{left:50%;bottom:calc(12px + env(safe-area-inset-bottom));transform:translateX(-50%);white-space:nowrap}#pwa-install-cta:hover{transform:translateX(-50%) translateY(-2px)}}
+@media(display-mode:standalone){#pwa-install-cta{display:none!important}}
+</style>
 </head>
 <body>
 <div id="dwl-welcome" role="status" aria-label="Welcome to Doc Writer Lab"><div class="dwl-welcome-content"><svg class="dwl-mark" viewBox="0 0 40 40" role="img" aria-label="Doc Writer Lab logo"><rect width="40" height="40" rx="11" fill="#e5322d"/><path d="M12 8h11l7 7v16a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z" fill="#fff"/><path d="M23 8v6a1 1 0 0 0 1 1h6" fill="#ffc9c4"/><path d="m15 24.5 3.3 3.3 7.2-7.3" fill="none" stroke="#e5322d" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/></svg><h1>Welcome to <span>Doc Writer Lab</span></h1><p>Write · Create · Organize · Convert</p></div></div>
@@ -253,5 +267,23 @@
 <!--/FTR-->
 <script src="/assets/app.js?v=20261105a" defer></script>
 <script>(function(){var screen=document.getElementById('dwl-welcome');if(!screen)return;var hide=function(){screen.classList.add('is-hidden');};var timer=window.setTimeout(hide,4000);screen.addEventListener('click',function(){window.clearTimeout(timer);hide();});})();</script>
+<button id="pwa-install-cta" type="button" aria-label="Install DocWriter as an app"><span class="pwa-install-mark" aria-hidden="true"></span><span id="pwa-install-label">Install App</span></button>
+<script id="pwa-install-controller">
+(function(){
+ var button=document.getElementById("pwa-install-cta"),label=document.getElementById("pwa-install-label"),promptEvent=null;
+ if(!button)return;
+ var standalone=window.matchMedia("(display-mode: standalone)").matches||window.navigator.standalone===true;
+ if(standalone){button.hidden=true;return;}
+ window.addEventListener("beforeinstallprompt",function(event){event.preventDefault();promptEvent=event;});
+ window.addEventListener("appinstalled",function(){button.hidden=true;promptEvent=null;});
+ button.addEventListener("click",async function(){
+  if(promptEvent){promptEvent.prompt();try{await promptEvent.userChoice;}catch(e){}promptEvent=null;return;}
+  var ios=/iphone|ipad|ipod/i.test(navigator.userAgent);
+  if(label)label.textContent=ios?"Share → Add to Home Screen":"Browser menu → Install App";
+  window.setTimeout(function(){if(label)label.textContent="Install App";},3200);
+ });
+ if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("/sw.js").catch(function(){});});}
+})();
+</script>
 </body>
 </html>
